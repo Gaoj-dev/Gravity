@@ -4,7 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(GravityReceiver))]
 [RequireComponent(typeof(GroundDetector))]
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(PlayerSpaceController))]
+[RequireComponent(typeof(PlayerPlanetController))]
+[RequireComponent(typeof(PlayerModeHandler))]
 public class Controlador : MonoBehaviour
 {
     [Header("Legacy references")]
@@ -21,14 +23,16 @@ public class Controlador : MonoBehaviour
 
     private GravityReceiver gravityReceiver;
     private GroundDetector groundDetector;
-    private PlayerController playerController;
+    private PlayerSpaceController playerSpaceController;
 
     private void Awake()
     {
         rb = GetOrAddComponent<Rigidbody2D>();
         gravityReceiver = GetOrAddComponent<GravityReceiver>();
         groundDetector = GetOrAddComponent<GroundDetector>();
-        playerController = GetOrAddComponent<PlayerController>();
+        playerSpaceController = GetOrAddComponent<PlayerSpaceController>();
+        GetOrAddComponent<PlayerPlanetController>();
+        GetOrAddComponent<PlayerModeHandler>();
 
         SyncToComponents();
     }
@@ -38,7 +42,9 @@ public class Controlador : MonoBehaviour
         rb = GetOrAddComponent<Rigidbody2D>();
         gravityReceiver = GetOrAddComponent<GravityReceiver>();
         groundDetector = GetOrAddComponent<GroundDetector>();
-        playerController = GetOrAddComponent<PlayerController>();
+        playerSpaceController = GetOrAddComponent<PlayerSpaceController>();
+        GetOrAddComponent<PlayerPlanetController>();
+        GetOrAddComponent<PlayerModeHandler>();
 
         SyncToComponents();
     }
@@ -87,21 +93,21 @@ public class Controlador : MonoBehaviour
         rb ??= GetComponent<Rigidbody2D>();
         gravityReceiver ??= GetComponent<GravityReceiver>();
         groundDetector ??= GetComponent<GroundDetector>();
-        playerController ??= GetComponent<PlayerController>();
+        playerSpaceController ??= GetComponent<PlayerSpaceController>();
     }
 
     private void SyncToComponents()
     {
         SyncCachedReferences();
 
-        if (playerController == null)
+        if (playerSpaceController == null)
         {
             return;
         }
 
-        playerController.rb = rb;
-        playerController.salto = salto;
-        playerController.maxHorizontalSpeed = maxHorizontalSpeed > 0f ? maxHorizontalSpeed : moveSpeed;
+        playerSpaceController.rb = rb;
+        playerSpaceController.salto = salto;
+        playerSpaceController.maxHorizontalSpeed = maxHorizontalSpeed > 0f ? maxHorizontalSpeed : moveSpeed;
     }
 
     private T GetOrAddComponent<T>() where T : Component

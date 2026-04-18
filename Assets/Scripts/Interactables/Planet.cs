@@ -1,9 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Planet : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string sceneToLoad;
+    [SerializeField] private string interactionId = "Enter";
+    [SerializeField] private string sceneToLoad = "TestWorld1";
+
+    public string InteractionId => interactionId;
 
     public void Interact()
     {
@@ -18,6 +20,12 @@ public class Planet : MonoBehaviour, IInteractable
 
     private void ChangeScene()
     {
-        SceneManager.LoadScene(sceneToLoad);
+        if (string.IsNullOrWhiteSpace(sceneToLoad))
+        {
+            Debug.LogWarning($"Planet {name} has no scene assigned.", this);
+            return;
+        }
+
+        GameModeManager.LoadSceneForMode(sceneToLoad, GameMode.Planet);
     }
 }

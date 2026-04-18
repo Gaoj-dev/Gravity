@@ -1,14 +1,28 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Interactor : MonoBehaviour
 {
-    [Header("Detection")]
-    [SerializeField] private float interactionRadius = 1.25f;
-    [SerializeField] private LayerMask interactableLayers = ~0;
-    [SerializeField] private Transform detectionOrigin;
+    [Serializable]
+    private class InteractionBinding
+    {
+        public string interactionId = "Enter";
+        public Key key = Key.E;
+        public float radius = 1.25f;
+        public LayerMask interactableLayers = ~0;
+        public Color gizmoColor = Color.yellow;
+    }
 
-    private IInteractable currentInteractable;
+    [Header("Detection")]
+    [SerializeField] private Transform detectionOrigin;
+    [SerializeField] private InteractionBinding[] interactionBindings =
+    {
+        new InteractionBinding()
+    };
+
+    private readonly HashSet<Collider2D> triggerContacts = new HashSet<Collider2D>();
 
     private void Awake()
     {
@@ -20,65 +34,164 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        RefreshNearbyInteractable();
-
-        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current == null)
         {
-            currentInteractable?.Interact();
+            return;
+        }
+
+        foreach (InteractionBinding binding in interactionBindings)
+        {
+            if (!Keyboard.current[binding.key].wasPressedThisFrame)
+            {
+                continue;
+            }
+
+            IInteractable interactable = FindInteractableForBinding(binding);
+            if (interactable != null)
+            {
+                interactable.Interact();
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        TrySetCurrentInteractable(other);
+        triggerContacts.Add(other);
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        TrySetCurrentInteractable(other);
+        triggerContacts.Add(other);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (currentInteractable != null && IsSameInteractable(other, currentInteractable))
-        {
-            currentInteractable = null;
-        }
+        triggerContacts.Remove(other);
     }
 
-    private void RefreshNearbyInteractable()
+    private IInteractable FindInteractableForBinding(InteractionBinding binding)
     {
-        // Fallback por overlap para que siga funcionando aunque el trigger no esté configurado.
-        Collider2D nearbyCollider = Physics2D.OverlapCircle(detectionOrigin.position, interactionRadius, interactableLayers);
+        Vector2 origin = detectionOrigin.position;
 
-        if (nearbyCollider == null)
+        IInteractable interactableFromTrigger = FindInteractableFromTriggers(binding, origin);
+        if (interactableFromTrigger != null)
         {
-            currentInteractable = null;
-            return;
+            return interactableFromTrigger;
         }
 
-        currentInteractable = nearbyCollider.GetComponent<IInteractable>();
+        Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(origin, binding.radius, binding.interactableLayers);
+        foreach (Collider2D nearbyCollider in nearbyColliders)
+        {
+            IInteractable interactable = ResolveInteractable(nearbyCollider);
+            if (interactable != null && MatchesInteraction(binding, interactable))
+            {
+                return interactable;
+            }
+        }
+
+        return null;
     }
 
-    private void TrySetCurrentInteractable(Collider2D other)
+    // Reutiliza los contactos del trigger, pero sigue validando el radio del tipo de interaccion.
+    private IInteractable FindInteractableFromTriggers(InteractionBinding binding, Vector2 origin)
     {
-        IInteractable interactable = other.GetComponent<IInteractable>();
+        List<Collider2D> invalidContacts = null;
+        float maxDistanceSqr = binding.radius * binding.radius;
+
+        foreach (Collider2D triggerContact in triggerContacts)
+        {
+            if (triggerContact == null)
+            {
+                invalidContacts ??= new List<Collider2D>();
+                invalidContacts.Add(triggerContact);
+                continue;
+            }
+
+            IInteractable interactable = ResolveInteractable(triggerContact);
+            if (interactable == null || !MatchesInteraction(binding, interactable))
+            {
+                continue;
+            }
+
+            if (GetDistanceSqr(origin, triggerContact) <= maxDistanceSqr)
+            {
+                return interactable;
+            }
+        }
+
+        if (invalidContacts != null)
+        {
+            foreach (Collider2D invalidContact in invalidContacts)
+            {
+                triggerContacts.Remove(invalidContact);
+            }
+        }
+
+        return null;
+    }
+
+    private bool MatchesInteraction(InteractionBinding binding, IInteractable interactable)
+    {
+        return string.Equals(interactable.InteractionId, binding.interactionId, StringComparison.OrdinalIgnoreCase);
+    }
+
+    // Soporta interactuables en el propio collider, en su rigidbody o en padres.
+    private IInteractable ResolveInteractable(Collider2D targetCollider)
+    {
+        if (targetCollider == null)
+        {
+            return null;
+        }
+
+        IInteractable interactable = FindInteractable(targetCollider.GetComponents<MonoBehaviour>());
         if (interactable != null)
         {
-            currentInteractable = interactable;
+            return interactable;
         }
+
+        if (targetCollider.attachedRigidbody != null)
+        {
+            interactable = FindInteractable(targetCollider.attachedRigidbody.GetComponents<MonoBehaviour>());
+            if (interactable != null)
+            {
+                return interactable;
+            }
+        }
+
+        return FindInteractable(targetCollider.GetComponentsInParent<MonoBehaviour>());
     }
 
-    private bool IsSameInteractable(Collider2D other, IInteractable interactable)
+    private IInteractable FindInteractable(MonoBehaviour[] behaviours)
     {
-        return other.GetComponent<IInteractable>() == interactable;
+        foreach (MonoBehaviour behaviour in behaviours)
+        {
+            if (behaviour is IInteractable interactable)
+            {
+                return interactable;
+            }
+        }
+
+        return null;
+    }
+
+    private float GetDistanceSqr(Vector2 origin, Collider2D targetCollider)
+    {
+        Vector2 closestPoint = targetCollider.ClosestPoint(origin);
+        return (closestPoint - origin).sqrMagnitude;
     }
 
     private void OnDrawGizmosSelected()
     {
         Transform origin = detectionOrigin != null ? detectionOrigin : transform;
+        if (interactionBindings == null)
+        {
+            return;
+        }
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(origin.position, interactionRadius);
+        foreach (InteractionBinding binding in interactionBindings)
+        {
+            Gizmos.color = binding.gizmoColor;
+            Gizmos.DrawWireSphere(origin.position, binding.radius);
+        }
     }
 }
