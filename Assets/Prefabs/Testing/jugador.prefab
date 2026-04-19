@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7623684238742365081
+--- !u!1 &4668748135473396908
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,18 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5141599320484331662}
-  - component: {fileID: 4448304213487785560}
-  - component: {fileID: 3320170987772722336}
-  - component: {fileID: 3326573861819795674}
-  - component: {fileID: 6489762724328461838}
-  - component: {fileID: 4041888251325562035}
-  - component: {fileID: 8861759043023071378}
+  - component: {fileID: 7337659107417939159}
+  - component: {fileID: 8150520019556821397}
+  - component: {fileID: 405850869081260976}
+  - component: {fileID: 101240126787343523}
+  - component: {fileID: 7638095856252779514}
+  - component: {fileID: 4387935259248316717}
+  - component: {fileID: 3331612320782902871}
+  - component: {fileID: 1872371377095353587}
+  - component: {fileID: 3426906256773131373}
+  - component: {fileID: 5135659086224094621}
+  - component: {fileID: 8106168899073820206}
+  - component: {fileID: 8699721709792174195}
   m_Layer: 0
   m_Name: jugador
   m_TagString: Untagged
@@ -22,28 +27,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5141599320484331662
+--- !u!4 &7337659107417939159
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.3312883, w: 0.9435296}
-  m_LocalPosition: {x: -1.52, y: 4.03, z: 0}
+  m_LocalPosition: {x: -0.16, y: 3.55, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -38.694}
---- !u!212 &4448304213487785560
+--- !u!212 &8150520019556821397
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -95,14 +100,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &3320170987772722336
+--- !u!50 &405850869081260976
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -122,13 +127,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &3326573861819795674
+--- !u!61 &101240126787343523
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -168,48 +173,146 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
---- !u!114 &6489762724328461838
+--- !u!114 &7638095856252779514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 810017710091fe344baa5a8a83067875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  rb: {fileID: 3320170987772722336}
+  rb: {fileID: 405850869081260976}
   maxHorizontalSpeed: 10
   groundAcceleration: 30
   airAcceleration: 10
   groundDeceleration: 35
-  salto: 20
+  salto: 14
   jumpBufferTime: 0.12
   coyoteTime: 0.1
---- !u!114 &4041888251325562035
+--- !u!114 &4387935259248316717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c404adc60ce9f4db3e97abb826c20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GravityReceiver
---- !u!114 &8861759043023071378
+--- !u!114 &3331612320782902871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623684238742365081}
+  m_GameObject: {fileID: 4668748135473396908}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5de0b053454a3cf4a959900198513c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundDetector
   minGroundDot: 0.25
+--- !u!114 &1872371377095353587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668748135473396908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84d95fdfa90ae94680e25aae95ef53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerModeHandler
+  persistAcrossScenes: 1
+  spaceInteractor: {fileID: 0}
+  planetMeleeAttack: {fileID: 0}
+  defaultSceneSpawnPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &3426906256773131373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668748135473396908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e53a0630dd7e51438e2a726db3489e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  detectionOrigin: {fileID: 7337659107417939159}
+  interactionBindings:
+  - interactionId: Enter
+    key: 19
+    radius: 0.75
+    interactableLayers:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!114 &5135659086224094621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668748135473396908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b9ca466def1246a7a4d74377a94a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpaceController
+  rb: {fileID: 0}
+  maxHorizontalSpeed: 10
+  groundAcceleration: 30
+  airAcceleration: 10
+  groundDeceleration: 35
+  salto: 10
+  jumpBufferTime: 0.12
+  coyoteTime: 0.1
+--- !u!114 &8106168899073820206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668748135473396908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a66c600eeea27419d2175dceaf9d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
+  attackDamage: 1
+  attackCooldown: 0.2
+  attackBoxSize: {x: 1.25, y: 0.9}
+  attackDistance: 0.9
+  knockbackForce: 6
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  attackOrigin: {fileID: 0}
+--- !u!114 &8699721709792174195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668748135473396908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856dbcfab406ecd48bf4fbb087a4e1dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPlanetController
+  rb: {fileID: 0}
+  moveSpeed: 8
+  groundAcceleration: 40
+  airAcceleration: 20
+  groundDeceleration: 45
+  jumpForce: 12
+  jumpHorizontalBoost: 8
+  gravityScale: 3

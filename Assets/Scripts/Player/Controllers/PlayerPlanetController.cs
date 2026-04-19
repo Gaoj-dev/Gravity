@@ -17,6 +17,9 @@ public class PlayerPlanetController : MonoBehaviour
     private GroundDetector groundDetector;
     private float moveInput;
     private bool jumpRequested;
+    private Vector2 facingDirection = Vector2.right;
+
+    public Vector2 FacingDirection => facingDirection;
 
     private void Awake()
     {
@@ -62,6 +65,15 @@ public class PlayerPlanetController : MonoBehaviour
         else
         {
             moveInput = 0f;
+        }
+
+        if (moveInput > 0.01f)
+        {
+            facingDirection = Vector2.right;
+        }
+        else if (moveInput < -0.01f)
+        {
+            facingDirection = Vector2.left;
         }
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)

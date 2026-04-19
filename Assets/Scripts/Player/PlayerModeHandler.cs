@@ -10,6 +10,7 @@ public class PlayerModeHandler : MonoBehaviour
 {
     [SerializeField] private bool persistAcrossScenes = true;
     [SerializeField] private Interactor spaceInteractor;
+    [SerializeField] private PlayerMeleeAttack planetMeleeAttack;
     [SerializeField] private Vector3 defaultSceneSpawnPosition = Vector3.zero;
 
     private static PlayerModeHandler instance;
@@ -37,6 +38,11 @@ public class PlayerModeHandler : MonoBehaviour
         if (spaceInteractor == null)
         {
             spaceInteractor = GetComponent<Interactor>();
+        }
+
+        if (planetMeleeAttack == null)
+        {
+            planetMeleeAttack = GetComponent<PlayerMeleeAttack>();
         }
 
         if (persistAcrossScenes)
@@ -82,6 +88,11 @@ public class PlayerModeHandler : MonoBehaviour
         if (spaceInteractor != null)
         {
             spaceInteractor.enabled = isSpaceMode;
+        }
+
+        if (planetMeleeAttack != null)
+        {
+            planetMeleeAttack.enabled = !isSpaceMode;
         }
 
         if (gravityReceiver != null)
