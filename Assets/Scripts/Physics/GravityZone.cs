@@ -54,6 +54,13 @@ public class GravityZone : MonoBehaviour
             return;
         }
 
+        GravityReceiverDrawRay drawRayReceiver = other.GetComponent<GravityReceiverDrawRay>();
+        if (drawRayReceiver != null)
+        {
+            drawRayReceiver.SetGravityForce(GetInstanceID(), force);
+            return;
+        }
+
         Controlador controller = other.GetComponent<Controlador>();
         if (controller != null)
         {
@@ -67,6 +74,13 @@ public class GravityZone : MonoBehaviour
         if (receiver != null)
         {
             receiver.RemoveGravityForce(GetInstanceID());
+            return;
+        }
+
+        GravityReceiverDrawRay drawRayReceiver = other.GetComponent<GravityReceiverDrawRay>();
+        if (drawRayReceiver != null)
+        {
+            drawRayReceiver.RemoveGravityForce(GetInstanceID());
             return;
         }
 
