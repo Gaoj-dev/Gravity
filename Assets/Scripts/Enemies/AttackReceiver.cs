@@ -9,11 +9,17 @@ public class AttackReceiver : MonoBehaviour
     private float currentHealth;
     private bool isDead;
     private Rigidbody2D rb;
+    private EnemyChaseController chaseController;
+    private EnemyPatrolController patrolController;
+    private EnemyContactDamage contactDamage;
 
     private void Awake()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        chaseController = GetComponent<EnemyChaseController>();
+        patrolController = GetComponent<EnemyPatrolController>();
+        contactDamage = GetComponent<EnemyContactDamage>();
     }
 
     public void ReceiveAttack(float damage, Vector2 attackDirection, float knockbackForce)
@@ -40,6 +46,7 @@ public class AttackReceiver : MonoBehaviour
     private void Die()
     {
         isDead = true;
+        DisableEnemyBehaviours();
 
         if (rb != null)
         {
@@ -53,5 +60,23 @@ public class AttackReceiver : MonoBehaviour
     {
         yield return new WaitForSeconds(destroyDelay);
         Destroy(gameObject);
+    }
+
+    private void DisableEnemyBehaviours()
+    {
+        if (chaseController != null)
+        {
+            chaseController.enabled = false;
+        }
+
+        if (patrolController != null)
+        {
+            patrolController.enabled = false;
+        }
+
+        if (contactDamage != null)
+        {
+            contactDamage.enabled = false;
+        }
     }
 }

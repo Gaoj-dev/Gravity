@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(GravityReceiver))]
+[RequireComponent(typeof(PlayerHealth))]
 [RequireComponent(typeof(PlayerSpaceController))]
 [RequireComponent(typeof(PlayerPlanetController))]
 public class PlayerModeHandler : MonoBehaviour
