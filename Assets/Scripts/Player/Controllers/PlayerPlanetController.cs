@@ -18,8 +18,13 @@ public class PlayerPlanetController : MonoBehaviour
     private float moveInput;
     private bool jumpRequested;
     private Vector2 facingDirection = Vector2.right;
+    private bool movementLocked;
 
     public Vector2 FacingDirection => facingDirection;
+    public Rigidbody2D Rigidbody => rb;
+    public GroundDetector GroundDetector => groundDetector;
+    public float MoveInput => moveInput;
+    public bool IsGrounded => groundDetector != null && groundDetector.EstaSuelo;
 
     private void Awake()
     {
@@ -87,6 +92,13 @@ public class PlayerPlanetController : MonoBehaviour
         transform.rotation = Quaternion.identity;
 
         Vector2 velocity = rb.linearVelocity;
+        if (movementLocked)
+        {
+            rb.linearVelocity = velocity;
+            jumpRequested = false;
+            return;
+        }
+
         float targetSpeed = moveInput * moveSpeed;
         float acceleration = groundDetector.EstaSuelo ? groundAcceleration : airAcceleration;
 
@@ -110,5 +122,38 @@ public class PlayerPlanetController : MonoBehaviour
         }
 
         jumpRequested = false;
+    }
+
+    public void SetMovementLocked(bool isLocked)
+    {
+        movementLocked = isLocked;
+    }
+
+    public void ConsumeJumpRequest()
+    {
+        jumpRequested = false;
+    }
+
+    public bool ConsumeJumpPressedThisFrame()
+    {
+        if (!jumpRequested)
+        {
+            return false;
+        }
+
+        jumpRequested = false;
+        return true;
+    }
+
+    public void ForceFacingDirection(float horizontalDirection)
+    {
+        if (horizontalDirection > 0.01f)
+        {
+            facingDirection = Vector2.right;
+        }
+        else if (horizontalDirection < -0.01f)
+        {
+            facingDirection = Vector2.left;
+        }
     }
 }

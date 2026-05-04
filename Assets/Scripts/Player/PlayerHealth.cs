@@ -42,6 +42,16 @@ public class PlayerHealth : MonoBehaviour
         return true;
     }
 
+    public void ForceInvincibility(float duration)
+    {
+        if (duration <= 0f)
+        {
+            return;
+        }
+
+        invincibleUntil = Mathf.Max(invincibleUntil, Time.time + duration);
+    }
+
     // Punto de extension para muerte, animacion o respawn del jugador.
     private void HandleDeath()
     {

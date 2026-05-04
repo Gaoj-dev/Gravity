@@ -7,6 +7,12 @@ public class EnemyContactDamage : MonoBehaviour
     [SerializeField] private float contactInterval = 0.2f;
 
     private float nextDamageTime;
+    private AttackReceiver attackReceiver;
+
+    private void Awake()
+    {
+        attackReceiver = GetComponent<AttackReceiver>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,6 +36,11 @@ public class EnemyContactDamage : MonoBehaviour
 
     private void TryDamagePlayer(Collider2D target)
     {
+        if (attackReceiver != null && attackReceiver.IsDead)
+        {
+            return;
+        }
+
         if (Time.time < nextDamageTime)
         {
             return;

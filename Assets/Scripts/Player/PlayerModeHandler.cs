@@ -5,13 +5,16 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(GravityReceiver))]
 [RequireComponent(typeof(PlayerHealth))]
+[RequireComponent(typeof(PlayerGoldWallet))]
 [RequireComponent(typeof(PlayerSpaceController))]
 [RequireComponent(typeof(PlayerPlanetController))]
+[RequireComponent(typeof(PlayerPlanetAbilities))]
 public class PlayerModeHandler : MonoBehaviour
 {
     [SerializeField] private bool persistAcrossScenes = true;
     [SerializeField] private Interactor spaceInteractor;
     [SerializeField] private PlayerMeleeAttack planetMeleeAttack;
+    [SerializeField] private PlayerPlanetAbilities planetAbilities;
     [SerializeField] private Vector3 defaultSceneSpawnPosition = Vector3.zero;
 
     private static PlayerModeHandler instance;
@@ -44,6 +47,11 @@ public class PlayerModeHandler : MonoBehaviour
         if (planetMeleeAttack == null)
         {
             planetMeleeAttack = GetComponent<PlayerMeleeAttack>();
+        }
+
+        if (planetAbilities == null)
+        {
+            planetAbilities = GetComponent<PlayerPlanetAbilities>();
         }
 
         if (persistAcrossScenes)
@@ -94,6 +102,11 @@ public class PlayerModeHandler : MonoBehaviour
         if (planetMeleeAttack != null)
         {
             planetMeleeAttack.enabled = !isSpaceMode;
+        }
+
+        if (planetAbilities != null)
+        {
+            planetAbilities.enabled = !isSpaceMode;
         }
 
         if (gravityReceiver != null)
