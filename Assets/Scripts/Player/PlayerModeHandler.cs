@@ -123,6 +123,11 @@ public class PlayerModeHandler : MonoBehaviour
         {
             rb.angularVelocity = 0f;
 
+            if (isSpaceMode)
+            {
+                rb.gravityScale = 0f;
+            }
+
             if (!isSpaceMode)
             {
                 rb.rotation = 0f;
