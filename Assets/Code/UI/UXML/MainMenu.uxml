@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="project://database/Assets/Code/UI/Styles/MenuTheme.uss" />
+
+    <ui:VisualElement class="screen-root">
+        <ui:VisualElement class="menu-panel">
+            <ui:Label name="menu-title" class="menu-title" text="Gravity Frontier" />
+            <ui:Button name="continue-button" class="menu-button" text="Continuar" />
+            <ui:Button name="load-button" class="menu-button secondary-button" text="Cargar" />
+            <ui:Button name="exit-button" class="menu-button secondary-button" text="Salir" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
