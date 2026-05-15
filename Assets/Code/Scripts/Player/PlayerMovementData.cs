@@ -13,6 +13,7 @@ public class PlayerAnimationData : MonoBehaviour
     private static readonly int IsJumpingHash = Animator.StringToHash("IsJumping");
     private static readonly int IsAttacking1Hash = Animator.StringToHash("IsAttacking1");
     private static readonly int IsAttacking2Hash = Animator.StringToHash("IsAttacking2");
+    private static readonly int IsDashHash = Animator.StringToHash("isDash");
     private static readonly int IsHitHash = Animator.StringToHash("IsHit");
     private static readonly int IsDeadHash = Animator.StringToHash("isDead");
 
@@ -75,14 +76,28 @@ public class PlayerAnimationData : MonoBehaviour
         float verticalSpeed   = Vector2.Dot(worldVelocity, localUp);
 
         bool isJumping = false;
+        bool isDashing = planetAbilities != null && planetAbilities.IsDashing;
+
+        bool isGrounded = false;
 
         if (planetController != null && planetController.enabled)
         {
             isJumping = planetController.IsJumping;
+            isGrounded = planetController.IsGrounded;
         }
         else if (spaceController != null && spaceController.enabled)
         {
             isJumping = spaceController.IsJumping;
+        }
+
+        if (isDashing)
+        {
+            isJumping = false;
+            verticalSpeed = 0f;
+        }
+        else if (isGrounded)
+        {
+            verticalSpeed = 0f;
         }
 
         animator.SetFloat(HorizontalSpeedHash, Mathf.Abs(horizontalSpeed));
@@ -90,6 +105,7 @@ public class PlayerAnimationData : MonoBehaviour
         animator.SetBool(IsJumpingHash, isJumping);
         animator.SetBool(IsAttacking1Hash, meleeAttack != null && meleeAttack.IsAttacking1Active);
         animator.SetBool(IsAttacking2Hash, planetAbilities != null && planetAbilities.IsAttacking2Active);
+        animator.SetBool(IsDashHash, isDashing);
         animator.SetBool(IsHitHash, playerHealth != null && playerHealth.IsHit);
         animator.SetBool(IsDeadHash, playerHealth != null && playerHealth.IsDead);
     }

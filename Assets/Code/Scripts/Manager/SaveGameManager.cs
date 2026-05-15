@@ -109,6 +109,37 @@ public static class SaveGameManager
         return true;
     }
 
+    public static bool LoadMostRecentSlot()
+    {
+        EnsureInitialized();
+
+        int latestSlotIndex = -1;
+        DateTime latestTime = DateTime.MinValue;
+
+        for (int i = 0; i < SlotCount; i++)
+        {
+            if (!Slots[i].HasSave)
+            {
+                continue;
+            }
+
+            SaveFileData saveFileData = LoadSaveFile(i);
+            if (saveFileData == null)
+            {
+                continue;
+            }
+
+            DateTime savedTime = ParseSavedTime(saveFileData.metadata.savedAtIsoUtc);
+            if (savedTime > latestTime)
+            {
+                latestTime = savedTime;
+                latestSlotIndex = i;
+            }
+        }
+
+        return latestSlotIndex >= 0 && LoadFromSlot(latestSlotIndex);
+    }
+
     public static bool TryGetPendingPlayerPosition(string sceneName, out Vector3 playerPosition)
     {
         if (pendingLoadData != null && string.Equals(sceneName, pendingSceneName, StringComparison.Ordinal))

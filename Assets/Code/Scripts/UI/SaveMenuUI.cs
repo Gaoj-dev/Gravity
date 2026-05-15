@@ -6,12 +6,13 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(UIDocument))]
 public class SaveMenuUI : MonoBehaviour
 {
-    private const float COMPACT_WIDTH_THRESHOLD = 760f;
-
-    private void Start()
+    public enum SaveMenuMode
     {
-        SetVisible(false);
+        SaveAndLoad,
+        LoadOnly
     }
+
+    private const float COMPACT_WIDTH_THRESHOLD = 760f;
 
     [Serializable]
     private class SaveSlotViewData
@@ -35,6 +36,7 @@ public class SaveMenuUI : MonoBehaviour
     private UIDocument uiDocument;
     private bool eventsRegistered;
     private VisualElement root;
+    private SaveMenuMode currentMode = SaveMenuMode.SaveAndLoad;
 
     public event Action<int> SaveRequested;
     public event Action<int> LoadRequested;
@@ -44,6 +46,11 @@ public class SaveMenuUI : MonoBehaviour
     {
         uiDocument = GetComponent<UIDocument>();
         EnsureSlotCount();
+    }
+
+    private void Start()
+    {
+        SetVisible(false);
     }
 
     private void OnEnable()
@@ -81,6 +88,12 @@ public class SaveMenuUI : MonoBehaviour
         slots[slotIndex].title = title;
         slots[slotIndex].date = date;
         slots[slotIndex].time = time;
+        BindUi();
+    }
+
+    public void SetMode(SaveMenuMode mode)
+    {
+        currentMode = mode;
         BindUi();
     }
 
@@ -139,6 +152,16 @@ public class SaveMenuUI : MonoBehaviour
                 timeLabel.text = slot.time;
             }
 
+            if (saveButton != null)
+            {
+                saveButton.style.display = currentMode == SaveMenuMode.SaveAndLoad ? DisplayStyle.Flex : DisplayStyle.None;
+            }
+
+            if (loadButton != null)
+            {
+                loadButton.style.display = DisplayStyle.Flex;
+            }
+
             if (!eventsRegistered)
             {
                 int capturedIndex = i;
@@ -170,7 +193,7 @@ public class SaveMenuUI : MonoBehaviour
 
     private void HandleSavePressed(int slotIndex)
     {
-        if (!IsValidSlotIndex(slotIndex))
+        if (!IsValidSlotIndex(slotIndex) || currentMode == SaveMenuMode.LoadOnly)
         {
             return;
         }

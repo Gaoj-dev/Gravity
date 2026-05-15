@@ -65,6 +65,7 @@ public class PlayerPlanetAbilities : MonoBehaviour
     private bool projectileSpawnedThisAttack;
 
     public bool IsAttacking2Active => isShootingAttack;
+    public bool IsDashing => isDashing;
 
     private void Awake()
     {
@@ -205,10 +206,16 @@ public class PlayerPlanetAbilities : MonoBehaviour
         dashOnCooldown = true;
         controller.SetMovementLocked(true);
         playerHealth.ForceInvincibility(dashDuration);
-        SetEnemyCollisionIgnored(true);
+
+        Physics2D.IgnoreLayerCollision(
+            LayerMask.NameToLayer("Player"),
+            LayerMask.NameToLayer("Enemy"),
+            true
+        );
 
         float originalGravityScale = controller.Rigidbody.gravityScale;
         controller.Rigidbody.gravityScale = 0f;
+
 
         Vector2 dashDirection = controller.FacingDirection;
         controller.Rigidbody.linearVelocity = new Vector2(dashDirection.x * dashSpeed, 0f);
@@ -222,7 +229,12 @@ public class PlayerPlanetAbilities : MonoBehaviour
         }
 
         controller.Rigidbody.gravityScale = originalGravityScale;
-        SetEnemyCollisionIgnored(false);
+
+        Physics2D.IgnoreLayerCollision(
+            LayerMask.NameToLayer("Player"),
+            LayerMask.NameToLayer("Enemy"),
+            false
+        );
         controller.SetMovementLocked(false);
         isDashing = false;
 
@@ -329,25 +341,6 @@ public class PlayerPlanetAbilities : MonoBehaviour
 
         float horizontalOffset = controller != null ? controller.FacingDirection.x * 0.6f : 0f;
         return transform.position + new Vector3(horizontalOffset, 0f, 0f);
-    }
-
-    private void SetEnemyCollisionIgnored(bool ignored)
-    {
-        if (playerCollider == null)
-        {
-            return;
-        }
-
-        RefreshEnemyColliders();
-        foreach (Collider2D enemyCollider in enemyColliders)
-        {
-            if (enemyCollider == null)
-            {
-                continue;
-            }
-
-            Physics2D.IgnoreCollision(playerCollider, enemyCollider, ignored);
-        }
     }
 
     private void RefreshEnemyColliders()

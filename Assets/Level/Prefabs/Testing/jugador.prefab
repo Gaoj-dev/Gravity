@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 82495213921570393}
   - component: {fileID: 4818196514973488413}
   - component: {fileID: 4392201458991906405}
+  - component: {fileID: 4617666039932941179}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -113,6 +114,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4617666039932941179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3889795550989690541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7470a2ac9b4b250448f654d7dae12ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationEventRelay
+  planetAbilities: {fileID: 7819616552473303189}
+  meleeAttack: {fileID: 3028454796254880726}
 --- !u!1 &8402709243021447001
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 5
   invincibilityDuration: 1
+  hitAnimationDuration: 0.2
 --- !u!50 &1645891748541165718
 Rigidbody2D:
   serializedVersion: 5
@@ -259,7 +275,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1202908476145198023
 MonoBehaviour:
@@ -314,6 +330,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3806259719694940104, guid: 2dfb00638f5aa30409b37a21eee0a4b4, type: 3}
   projectileSpawnPoint: {fileID: 7337659107417939159, guid: 783c8c13b4c776841acd56ca213f394a, type: 3}
   shootCooldown: 0.25
+  shootAnimationSafetyTimeout: 0.5833333
 --- !u!114 &1546170414590148222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +495,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationData
   animator: {fileID: 4392201458991906405}
+  meleeAttack: {fileID: 0}
+  planetAbilities: {fileID: 0}
+  playerHealth: {fileID: 0}
+  planetController: {fileID: 0}
+  spaceController: {fileID: 0}
 --- !u!114 &3028454796254880726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,9 +514,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMeleeAttack
   attackDamage: 1
   attackCooldown: 0.2
-  attackBoxSize: {x: 1.25, y: 0.9}
+  attackAnimationDuration: 0.5833333
+  attackBoxSize: {x: 0.6, y: 1}
   attackDistance: 0.9
-  knockbackForce: 6
+  knockbackForce: 7
   hittableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -534,6 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 5
   invincibilityDuration: 1
+  hitAnimationDuration: 0.2
 --- !u!114 &4021643996808104183
 MonoBehaviour:
   m_ObjectHideFlags: 0

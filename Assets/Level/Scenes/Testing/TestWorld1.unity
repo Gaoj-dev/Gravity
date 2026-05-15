@@ -2811,119 +2811,17 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &1824785166
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1824785170}
-  - component: {fileID: 1824785169}
-  - component: {fileID: 1824785168}
-  - component: {fileID: 1824785167}
-  m_Layer: 5
-  m_Name: UIDocument
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1824785167
+--- !u!114 &1824785167 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3306834336185482397, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+  m_PrefabInstance: {fileID: 1381250724113581627}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824785166}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b09c66e27eba4fc41a3774605a641c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SaveMenuController
-  pauseGameplayWhileOpen: 1
---- !u!114 &1824785168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824785166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b29e1fce0380b4abdbacc4b3e271f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SaveMenuUI
-  slots:
-  - title: Guardado 1
-    date: --/--/----
-    time: --:--
-    onSavePressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onLoadPressed:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Guardado 2
-    date: --/--/----
-    time: --:--
-    onSavePressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onLoadPressed:
-      m_PersistentCalls:
-        m_Calls: []
-  - title: Guardado 3
-    date: --/--/----
-    time: --:--
-    onSavePressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onLoadPressed:
-      m_PersistentCalls:
-        m_Calls: []
-  onClosePressed:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1824785169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824785166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
-  m_PanelSettings: {fileID: 11400000, guid: 03583a12be177aa4a987d2755a2dafed, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 1b601d29d812eca479732c2f7317aaae, type: 3}
-  m_SortingOrder: 0
-  m_Position: 0
-  m_WorldSpaceSizeMode: 1
-  m_WorldSpaceWidth: 1920
-  m_WorldSpaceHeight: 1080
-  m_PivotReferenceSize: 0
-  m_Pivot: 0
-  m_WorldSpaceCollider: {fileID: 0}
---- !u!4 &1824785170
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824785166}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1931085835 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 384619477945725057, guid: c75da7f7144972b4b9488f2ca5cfcfb9, type: 3}
@@ -3144,6 +3042,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23d33f312fd3c1849869913f88023cc0, type: 3}
+--- !u!1001 &1381250724113581627
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715872957542768804, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8112061382384614962, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_Name
+      value: SaveMenuUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
 --- !u!1001 &5899554850723132767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3217,4 +3172,4 @@ SceneRoots:
   - {fileID: 1068707763050076225}
   - {fileID: 5899554850723132767}
   - {fileID: 1499620782}
-  - {fileID: 1824785170}
+  - {fileID: 1381250724113581627}

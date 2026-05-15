@@ -45,6 +45,16 @@ public class SaveMenuController : MonoBehaviour
 
     public void OpenMenu()
     {
+        OpenMenu(SaveMenuUI.SaveMenuMode.SaveAndLoad);
+    }
+
+    public void OpenLoadOnlyMenu()
+    {
+        OpenMenu(SaveMenuUI.SaveMenuMode.LoadOnly);
+    }
+
+    public void OpenMenu(SaveMenuUI.SaveMenuMode mode)
+    {
         if (isOpen)
         {
             return;
@@ -52,6 +62,7 @@ public class SaveMenuController : MonoBehaviour
 
         isOpen = true;
         RefreshSlotView();
+        saveMenuUI.SetMode(mode);
         saveMenuUI.SetVisible(true);
         PauseGameplay();
     }

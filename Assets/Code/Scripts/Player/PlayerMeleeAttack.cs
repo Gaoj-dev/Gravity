@@ -88,6 +88,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     // Animation Event: llamalo al final del clip para apagar el estado de ataque si quieres cerrarlo exacto.
     public void EndMeleeAttackFromAnimationEvent()
     {
+        Debug.Log("FIN ATAQUE");
         attackAnimationEndsAt = Time.time;
         isAttackQueued = false;
     }
