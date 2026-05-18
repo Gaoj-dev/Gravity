@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(SaveMenuUI))]
 public class SaveMenuController : MonoBehaviour
@@ -7,6 +8,7 @@ public class SaveMenuController : MonoBehaviour
 
     private SaveMenuUI saveMenuUI;
     private bool isOpen;
+    private Action closeCallback;
 
     public bool IsOpen => isOpen;
 
@@ -53,6 +55,12 @@ public class SaveMenuController : MonoBehaviour
         OpenMenu(SaveMenuUI.SaveMenuMode.LoadOnly);
     }
 
+    public void OpenLoadOnlyMenu(Action onClosed)
+    {
+        closeCallback = onClosed;
+        OpenMenu(SaveMenuUI.SaveMenuMode.LoadOnly);
+    }
+
     public void OpenMenu(SaveMenuUI.SaveMenuMode mode)
     {
         if (isOpen)
@@ -77,6 +85,10 @@ public class SaveMenuController : MonoBehaviour
         isOpen = false;
         saveMenuUI.SetVisible(false);
         ResumeGameplay();
+
+        Action callback = closeCallback;
+        closeCallback = null;
+        callback?.Invoke();
     }
 
     private void HandleSaveRequested(int slotIndex)
@@ -92,6 +104,7 @@ public class SaveMenuController : MonoBehaviour
         ResumeGameplay();
         isOpen = false;
         saveMenuUI.SetVisible(false);
+        closeCallback = null;
         SaveGameManager.LoadFromSlot(slotIndex);
     }
 

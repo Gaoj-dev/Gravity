@@ -45,6 +45,7 @@ public class SaveMenuUI : MonoBehaviour
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
+        UIToolkitPanelBootstrap.EnsureTextSettings(uiDocument);
         EnsureSlotCount();
     }
 

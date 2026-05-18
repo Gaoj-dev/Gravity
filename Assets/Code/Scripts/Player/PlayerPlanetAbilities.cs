@@ -43,8 +43,6 @@ public class PlayerPlanetAbilities : MonoBehaviour
     [SerializeField] private float dashSpeed = 16f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 3f;
-    [SerializeField] private LayerMask enemyLayers = ~0;
-
     [Header("Shoot")]
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform projectileSpawnPoint;
@@ -54,8 +52,6 @@ public class PlayerPlanetAbilities : MonoBehaviour
     private PlayerPlanetController controller;
     private PlayerHealth playerHealth;
     private Collider2D playerCollider;
-    private Collider2D[] enemyColliders = new Collider2D[0];
-
     private bool extraJumpAvailable;
     private bool dashOnCooldown;
     private bool isDashing;
@@ -341,12 +337,6 @@ public class PlayerPlanetAbilities : MonoBehaviour
 
         float horizontalOffset = controller != null ? controller.FacingDirection.x * 0.6f : 0f;
         return transform.position + new Vector3(horizontalOffset, 0f, 0f);
-    }
-
-    private void RefreshEnemyColliders()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1000f, enemyLayers);
-        enemyColliders = hits;
     }
 
     public PlayerAbilitySaveData CaptureSaveData()

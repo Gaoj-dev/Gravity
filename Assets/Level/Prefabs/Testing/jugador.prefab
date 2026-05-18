@@ -250,6 +250,7 @@ MonoBehaviour:
   maxHealth: 5
   invincibilityDuration: 1
   hitAnimationDuration: 0.2
+  deathAnimationDuration: 1
 --- !u!50 &1645891748541165718
 Rigidbody2D:
   serializedVersion: 5
@@ -474,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpaceController
   rb: {fileID: 0}
-  maxHorizontalSpeed: 10
+  maxHorizontalSpeed: 5
   groundAcceleration: 30
   airAcceleration: 10
   groundDeceleration: 35
@@ -522,6 +523,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   attackOrigin: {fileID: 0}
+  useSafetyTimeout: 1
 --- !u!114 &7620892800334288889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +560,7 @@ MonoBehaviour:
   maxHealth: 5
   invincibilityDuration: 1
   hitAnimationDuration: 0.2
+  deathAnimationDuration: 1
 --- !u!114 &4021643996808104183
 MonoBehaviour:
   m_ObjectHideFlags: 0

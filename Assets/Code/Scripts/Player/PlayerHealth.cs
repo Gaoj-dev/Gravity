@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerHealth : MonoBehaviour
@@ -6,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float maxHealth = 5f;
     [SerializeField] private float invincibilityDuration = 1f;
     [SerializeField] private float hitAnimationDuration = 0.2f;
+    [SerializeField] private float deathAnimationDuration = 1f;
 
     private Rigidbody2D rb;
     private float currentHealth;
@@ -18,6 +20,10 @@ public class PlayerHealth : MonoBehaviour
     public bool IsInvincible => Time.time < invincibleUntil;
     public bool IsHit => Time.time < hitAnimationUntil;
     public bool IsDead => isDead;
+    public float DeathAnimationDuration => deathAnimationDuration;
+
+    public event Action Damaged;
+    public event Action Died;
 
     private void Awake()
     {
@@ -27,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
 
     public bool TryTakeDamage(float damage, Vector2 knockback)
     {
-        if (damage <= 0f || IsInvincible)
+        if (damage <= 0f || IsInvincible || isDead)
         {
             return false;
         }
@@ -45,7 +51,10 @@ public class PlayerHealth : MonoBehaviour
         {
             isDead = true;
             HandleDeath();
+            return true;
         }
+
+        Damaged?.Invoke();
 
         return true;
     }
@@ -66,8 +75,8 @@ public class PlayerHealth : MonoBehaviour
         isDead = currentHealth <= 0f;
     }
 
-    // Punto de extension para muerte, animacion o respawn del jugador.
     private void HandleDeath()
     {
+        Died?.Invoke();
     }
 }

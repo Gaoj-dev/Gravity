@@ -10,14 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4000521966478377274}
   - component: {fileID: 6844592004546392527}
-  - component: {fileID: 5732185767774444365}
   - component: {fileID: 1101778671632060377}
-  - component: {fileID: 3370301586824612559}
-  - component: {fileID: 7871345130927847656}
-  - component: {fileID: 4794575926042599498}
-  - component: {fileID: 6974315352253020437}
+  - component: {fileID: 862385006684603381}
+  - component: {fileID: 28603010251625981}
   m_Layer: 3
-  m_Name: Enemy
+  m_Name: Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6792453, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300184, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,21 +93,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5732185767774444365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384619477945725057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd4059c0e03e50a498490ce3c520023c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyContactDamage
-  damage: 1
-  knockbackForce: 6
-  contactInterval: 0.2
 --- !u!114 &1101778671632060377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,37 +105,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323e43f66d6c82744a134d74a78521cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackReceiver
-  maxHealth: 3
+  maxHealth: 999999
   destroyDelay: 2
   goldPrefab: {fileID: 6826186423820990764, guid: 73044c30a7f20e440abdf208639a2354, type: 3}
-  goldDropCount: 2
+  goldDropCount: 0
   goldSpawnRadius: 0.35
   goldSpawnImpulse: 2
---- !u!114 &3370301586824612559
-MonoBehaviour:
+--- !u!50 &862385006684603381
+Rigidbody2D:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384619477945725057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cc7a08d4dd348e409522181830e42da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolController
-  patrolRadius: 3
-  moveSpeed: 2.5
-  acceleration: 20
-  waitAtPointTime: 1.2
-  arrivalTolerance: 0.15
-  groundLayers:
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
-  ledgeCheckOffset: {x: 0.35, y: -0.4}
-  ledgeCheckDistance: 0.7
-  wallCheckOffset: {x: 0.45, y: 0}
-  wallCheckDistance: 0.1
---- !u!70 &7871345130927847656
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &28603010251625981
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,60 +172,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 1.046875}
+  m_Size: {x: 1.46875, y: 2.09375}
   m_Direction: 0
---- !u!114 &4794575926042599498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384619477945725057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ace0981a274104a458a4b7a010f80e2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyChaseController
-  moveSpeed: 4
-  acceleration: 25
-  returnTolerance: 0.1
-  detectionRadius: 6
-  loseTargetDelay: 2
-  playerLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  groundLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  ledgeCheckOffset: {x: 0.35, y: -0.4}
-  ledgeCheckDistance: 0.7
-  wallCheckOffset: {x: 0.45, y: 0}
-  wallCheckDistance: 0.1
---- !u!50 &6974315352253020437
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384619477945725057}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4

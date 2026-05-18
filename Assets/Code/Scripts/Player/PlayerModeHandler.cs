@@ -72,16 +72,49 @@ public class PlayerModeHandler : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         GameModeManager.ModeChanged += ApplyMode;
+
+        if (playerHealth != null)
+        {
+            playerHealth.Died += HandlePlayerDied;
+        }
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         GameModeManager.ModeChanged -= ApplyMode;
+
+        if (playerHealth != null)
+        {
+            playerHealth.Died -= HandlePlayerDied;
+        }
+    }
+
+    private void HandlePlayerDied()
+    {
+        if (planetController != null) planetController.enabled = false;
+        if (spaceController != null) spaceController.enabled = false;
+        if (planetMeleeAttack != null) planetMeleeAttack.enabled = false;
+        if (planetAbilities != null) planetAbilities.enabled = false;
+        if (spaceInteractor != null) spaceInteractor.enabled = false;
+
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        if (playerLayer >= 0 && enemyLayer >= 0)
+        {
+            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, true);
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int enemyLayer = LayerMask.NameToLayer("Enemy");
+        if (playerLayer >= 0 && enemyLayer >= 0)
+        {
+            Physics2D.IgnoreLayerCollision(playerLayer, enemyLayer, false);
+        }
+
         MovePlayerToSceneSpawn(scene.name);
         ApplyMode(GameModeManager.CurrentMode);
         ApplyPendingSaveState(scene.name);
@@ -132,6 +165,7 @@ public class PlayerModeHandler : MonoBehaviour
 
             if (!isSpaceMode)
             {
+                rb.gravityScale = planetController != null ? planetController.ForcedGravityScale : 1f;
                 rb.rotation = 0f;
             }
         }

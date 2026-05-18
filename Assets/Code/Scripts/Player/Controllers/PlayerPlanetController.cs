@@ -26,6 +26,7 @@ public class PlayerPlanetController : MonoBehaviour
     public GroundDetector GroundDetector => groundDetector;
     public float MoveInput => moveInput;
     public bool IsGrounded => groundDetector != null && groundDetector.EstaSuelo;
+    public float ForcedGravityScale => Mathf.Max(1f, gravityScale);
     [SerializeField] private SpriteRenderer spriteRenderer;
 
 
@@ -43,7 +44,7 @@ public class PlayerPlanetController : MonoBehaviour
     {
         if (rb != null)
         {
-            rb.gravityScale = Mathf.Max(1f, gravityScale);
+            rb.gravityScale = ForcedGravityScale;
             rb.rotation = 0f;
             rb.angularVelocity = 0f;
         }
@@ -75,20 +76,11 @@ public class PlayerPlanetController : MonoBehaviour
             moveInput = 0f;
         }
 
-        if (moveInput > 0.01f)
-        {
-            facingDirection = Vector2.right;
-        }
-        else if (moveInput < -0.01f)
-        {
-            facingDirection = Vector2.left;
-        }
-
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             jumpRequested = true;
         }
-        //Gira el sprite
+
         if (moveInput > 0.01f)
         {
             facingDirection = Vector2.right;
@@ -104,6 +96,11 @@ public class PlayerPlanetController : MonoBehaviour
     private void FixedUpdate()
     {
         transform.rotation = Quaternion.identity;
+
+        if (rb.gravityScale != ForcedGravityScale)
+        {
+            rb.gravityScale = ForcedGravityScale;
+        }
 
         Vector2 velocity = rb.linearVelocity;
         if (movementLocked)

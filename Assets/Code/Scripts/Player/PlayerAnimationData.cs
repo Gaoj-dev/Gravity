@@ -12,12 +12,16 @@ public class PlayerAnimationData : MonoBehaviour
     private static readonly int VerticalSpeedHash = Animator.StringToHash("VerticalSpeed");
     private static readonly int IsJumpingHash = Animator.StringToHash("IsJumping");
     private static readonly int IsAttacking1Hash = Animator.StringToHash("IsAttacking1");
+    private static readonly int AttackTriggerHash = Animator.StringToHash("AttackTrigger");
     private static readonly int IsAttacking2Hash = Animator.StringToHash("IsAttacking2");
-    private static readonly int IsDashHash = Animator.StringToHash("isDash");
-    private static readonly int IsHitHash = Animator.StringToHash("IsHit");
-    private static readonly int IsDeadHash = Animator.StringToHash("isDead");
+    private static readonly int IsDashHash = Animator.StringToHash("IsDash");
+    private static readonly int HitTriggerHash = Animator.StringToHash("HitTrigger");
+    private static readonly int DeathTriggerHash = Animator.StringToHash("DeathTrigger");
 
     private Rigidbody2D rb;
+    private bool wasAttacking1LastFrame;
+    private bool prevIsHit;
+    private bool prevIsDead;
 
     [SerializeField] private PlayerPlanetController planetController;
     [SerializeField] private PlayerSpaceController spaceController;
@@ -28,7 +32,12 @@ public class PlayerAnimationData : MonoBehaviour
 
         if (animator == null)
         {
-            animator = GetComponent<Animator>();
+            animator = GetComponentInChildren<Animator>();
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("[Anim] No se encontro Animator en el jugador ni en sus hijos.", this);
         }
 
         if (planetController == null)
@@ -64,19 +73,17 @@ public class PlayerAnimationData : MonoBehaviour
             return;
         }
 
-        // Velocidad global del rigidbody
         Vector2 worldVelocity = rb.linearVelocity;
-
-        // Ejes locales del objeto (en 2D usamos right y up del transform)
         Vector2 localRight = transform.right;
         Vector2 localUp    = transform.up;
 
-        // Proyección sobre los ejes locales → velocidad en espacio local
         float horizontalSpeed = Vector2.Dot(worldVelocity, localRight);
         float verticalSpeed   = Vector2.Dot(worldVelocity, localUp);
 
         bool isJumping = false;
         bool isDashing = planetAbilities != null && planetAbilities.IsDashing;
+        bool isHit = playerHealth != null && playerHealth.IsHit;
+        bool isDead = playerHealth != null && playerHealth.IsDead;
 
         bool isGrounded = false;
 
@@ -90,7 +97,14 @@ public class PlayerAnimationData : MonoBehaviour
             isJumping = spaceController.IsJumping;
         }
 
-        if (isDashing)
+        if (isDead || isHit)
+        {
+            isJumping = false;
+            isDashing = false;
+            verticalSpeed = 0f;
+            horizontalSpeed = 0f;
+        }
+        else if (isDashing)
         {
             isJumping = false;
             verticalSpeed = 0f;
@@ -103,10 +117,35 @@ public class PlayerAnimationData : MonoBehaviour
         animator.SetFloat(HorizontalSpeedHash, Mathf.Abs(horizontalSpeed));
         animator.SetFloat(VerticalSpeedHash, verticalSpeed);
         animator.SetBool(IsJumpingHash, isJumping);
-        animator.SetBool(IsAttacking1Hash, meleeAttack != null && meleeAttack.IsAttacking1Active);
+
+        bool attackingNow = meleeAttack != null && meleeAttack.IsAttacking1Active;
+        animator.SetBool(IsAttacking1Hash, attackingNow);
+        if (attackingNow && !wasAttacking1LastFrame)
+        {
+            animator.SetTrigger(AttackTriggerHash);
+        }
+
+        wasAttacking1LastFrame = attackingNow;
         animator.SetBool(IsAttacking2Hash, planetAbilities != null && planetAbilities.IsAttacking2Active);
         animator.SetBool(IsDashHash, isDashing);
-        animator.SetBool(IsHitHash, playerHealth != null && playerHealth.IsHit);
-        animator.SetBool(IsDeadHash, playerHealth != null && playerHealth.IsDead);
+
+        // IsDead se dispara una sola vez cuando IsHit ya expiro, garantizando la secuencia TakeHit -> Death
+        bool animIsDead = isDead && !isHit;
+
+        if (isHit && !prevIsHit)
+        {
+            animator.SetTrigger(HitTriggerHash);
+            Debug.Log($"[Anim] HitTrigger disparado  |  isDead: {isDead}");
+        }
+
+        if (animIsDead && !prevIsDead)
+        {
+            animator.SetTrigger(DeathTriggerHash);
+            Debug.Log("[Anim] Death trigger disparado");
+        }
+
+        prevIsHit = isHit;
+
+        prevIsDead = animIsDead;
     }
 }

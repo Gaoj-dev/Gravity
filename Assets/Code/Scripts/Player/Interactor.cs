@@ -43,10 +43,10 @@ public class Interactor : MonoBehaviour
         {
             if (!Keyboard.current[binding.key].wasPressedThisFrame)
             {
-                Debug.Log($"Tecla pulsada: {binding.key} | Binding: {binding.interactionId}");
                 continue;
             }
 
+            Debug.Log($"Tecla pulsada: {binding.key} | Binding: {binding.interactionId}");
             IInteractable interactable = FindInteractableForBinding(binding);
             if (interactable != null)
             {

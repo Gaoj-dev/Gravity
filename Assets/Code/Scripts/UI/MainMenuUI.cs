@@ -22,6 +22,7 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         uiDocument = GetComponent<UIDocument>();
+        UIToolkitPanelBootstrap.EnsureTextSettings(uiDocument);
     }
 
     private void OnEnable()

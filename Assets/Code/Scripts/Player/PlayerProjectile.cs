@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerProjectile : MonoBehaviour
 {
@@ -10,17 +11,22 @@ public class PlayerProjectile : MonoBehaviour
 
     private Vector2 direction = Vector2.right;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private bool hasLaunched;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void Launch(Vector2 launchDirection)
     {
         hasLaunched = true;
-        direction = launchDirection.normalized == Vector2.zero ? Vector2.right : launchDirection.normalized;
+        direction = launchDirection.normalized == Vector2.zero 
+        ? Vector2.right : launchDirection.normalized;
+
+        sr.flipX = direction.x < 0;
 
         if (rb != null)
         {
@@ -36,6 +42,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             transform.position += (Vector3)(direction * speed * Time.deltaTime);
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)

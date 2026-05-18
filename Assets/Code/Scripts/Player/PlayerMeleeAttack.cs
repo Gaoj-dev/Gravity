@@ -14,13 +14,16 @@ public class PlayerMeleeAttack : MonoBehaviour
     [SerializeField] private float knockbackForce = 6f;
     [SerializeField] private LayerMask hittableLayers = ~0;
     [SerializeField] private Transform attackOrigin;
+    [SerializeField] private bool useSafetyTimeout = true;
 
     private PlayerPlanetController planetController;
     private float nextAttackTime;
-    private float attackAnimationEndsAt;
-    private bool isAttackQueued;
+    private bool isMeleeAttackActive;
+    private bool hitPerformedThisAttack;
+    private bool pendingAttack;
+    private Coroutine activeSafetyRoutine;
 
-    public bool IsAttacking1Active => Time.time < attackAnimationEndsAt;
+    public bool IsAttacking1Active => isMeleeAttackActive;
 
     private void Awake()
     {
@@ -52,21 +55,42 @@ public class PlayerMeleeAttack : MonoBehaviour
             return;
         }
 
+        if (isMeleeAttackActive)
+        {
+            pendingAttack = true;
+            return;
+        }
+
+        StartMeleeAttack();
+    }
+
+    private void StartMeleeAttack()
+    {
         nextAttackTime = Time.time + attackCooldown;
-        attackAnimationEndsAt = Time.time + attackAnimationDuration;
-        isAttackQueued = true;
-        StartCoroutine(MeleeAttackSafetyRoutine());
+        isMeleeAttackActive = true;
+        hitPerformedThisAttack = false;
+        pendingAttack = false;
+
+        if (useSafetyTimeout)
+        {
+            if (activeSafetyRoutine != null)
+            {
+                StopCoroutine(activeSafetyRoutine);
+            }
+
+            activeSafetyRoutine = StartCoroutine(MeleeAttackSafetyRoutine());
+        }
     }
 
     // Animation Event: llamalo en el frame donde el arma realmente impacta.
     public void PerformMeleeHitAnimationEvent()
     {
-        if (!isAttackQueued)
+        if (!isMeleeAttackActive || hitPerformedThisAttack)
         {
             return;
         }
 
-        isAttackQueued = false;
+        hitPerformedThisAttack = true;
 
         Vector2 facingDirection = planetController.FacingDirection;
         Vector2 attackCenter = (Vector2)attackOrigin.position + facingDirection * attackDistance;
@@ -88,22 +112,42 @@ public class PlayerMeleeAttack : MonoBehaviour
     // Animation Event: llamalo al final del clip para apagar el estado de ataque si quieres cerrarlo exacto.
     public void EndMeleeAttackFromAnimationEvent()
     {
-        Debug.Log("FIN ATAQUE");
-        attackAnimationEndsAt = Time.time;
-        isAttackQueued = false;
+        if (!isMeleeAttackActive)
+        {
+            return;
+        }
+
+        isMeleeAttackActive = false;
+        hitPerformedThisAttack = false;
+
+        if (activeSafetyRoutine != null)
+        {
+            StopCoroutine(activeSafetyRoutine);
+            activeSafetyRoutine = null;
+        }
+
+        if (pendingAttack && Time.time >= nextAttackTime)
+        {
+            StartMeleeAttack();
+        }
     }
 
     private System.Collections.IEnumerator MeleeAttackSafetyRoutine()
     {
         yield return new WaitForSeconds(attackAnimationDuration);
 
-        if (!isAttackQueued)
+        if (!isMeleeAttackActive)
         {
             yield break;
         }
 
-        PerformMeleeHitAnimationEvent();
+        if (!hitPerformedThisAttack)
+        {
+            PerformMeleeHitAnimationEvent();
+        }
+
         EndMeleeAttackFromAnimationEvent();
+        activeSafetyRoutine = null;
     }
 
     // Permite que el collider golpeado este en un hijo del enemigo.
