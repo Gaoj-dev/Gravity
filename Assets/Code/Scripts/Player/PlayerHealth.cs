@@ -4,19 +4,19 @@ using System;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 5f;
+    [SerializeField] private int maxHealth = 5;
     [SerializeField] private float invincibilityDuration = 1f;
     [SerializeField] private float hitAnimationDuration = 0.2f;
     [SerializeField] private float deathAnimationDuration = 1f;
 
     private Rigidbody2D rb;
-    private float currentHealth;
+    private int currentHealth;
     private float invincibleUntil;
     private float hitAnimationUntil;
     private bool isDead;
 
-    public float CurrentHealth => currentHealth;
-    public float MaxHealth => maxHealth;
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
     public bool IsInvincible => Time.time < invincibleUntil;
     public bool IsHit => Time.time < hitAnimationUntil;
     public bool IsDead => isDead;
@@ -31,14 +31,14 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public bool TryTakeDamage(float damage, Vector2 knockback)
+    public bool TryTakeDamage(int damage, Vector2 knockback)
     {
-        if (damage <= 0f || IsInvincible || isDead)
+        if (damage <= 0 || IsInvincible || isDead)
         {
             return false;
         }
 
-        currentHealth = Mathf.Max(0f, currentHealth - damage);
+        currentHealth = Mathf.Max(0, currentHealth - damage);
         invincibleUntil = Time.time + invincibilityDuration;
         hitAnimationUntil = Time.time + hitAnimationDuration;
 
@@ -69,9 +69,9 @@ public class PlayerHealth : MonoBehaviour
         invincibleUntil = Mathf.Max(invincibleUntil, Time.time + duration);
     }
 
-    public void SetCurrentHealth(float newHealth)
+    public void SetCurrentHealth(int newHealth)
     {
-        currentHealth = Mathf.Clamp(newHealth, 0f, maxHealth);
+        currentHealth = Mathf.Clamp(newHealth, 0, maxHealth);
         isDead = currentHealth <= 0f;
     }
 

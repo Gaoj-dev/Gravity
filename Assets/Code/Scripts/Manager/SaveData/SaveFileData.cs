@@ -31,7 +31,7 @@ public class PlayerSaveData
     public float rotationZ;
     public SerializableVector2 linearVelocity = new SerializableVector2();
     public float angularVelocity;
-    public float currentHealth;
+    public int currentHealth;
     public int goldCount;
     public PlayerAbilitySaveData abilities = new PlayerAbilitySaveData();
 }

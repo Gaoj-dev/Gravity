@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyContactDamage : MonoBehaviour
 {
-    [SerializeField] private float damage = 1f;
+    [SerializeField] private int damage = 1;
     [SerializeField] private float knockbackForce = 6f;
     [SerializeField] private float contactInterval = 0.2f;
 
