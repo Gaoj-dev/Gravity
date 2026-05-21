@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &176239837 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4527130673599629268, guid: 23d33f312fd3c1849869913f88023cc0, type: 3}
+  m_PrefabInstance: {fileID: 1068707763050076225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b1e491a9c2b614ba4e1fec6401708b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
 --- !u!1 &399291528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,6 +2516,71 @@ Transform:
   - {fileID: 399291529}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1165078371
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.33366
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.54602
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5663524378271095076, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868580099099524441, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 176239837}
+    - target: {fileID: 5868580099099524441, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: saveMenuController
+      value: 
+      objectReference: {fileID: 1824785167}
+    - target: {fileID: 8467482982143127314, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
+      propertyPath: m_Name
+      value: GameOverUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56b7997f361b9b045bd231e128d30944, type: 3}
 --- !u!1001 &1499620782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2951,3 +3027,4 @@ SceneRoots:
   - {fileID: 5899554850723132767}
   - {fileID: 1499620782}
   - {fileID: 1381250724113581627}
+  - {fileID: 1165078371}

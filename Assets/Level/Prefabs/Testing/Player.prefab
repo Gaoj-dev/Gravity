@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 8685634457501079889}
   - component: {fileID: 4021643996808104183}
   m_Layer: 6
-  m_Name: jugador
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8402709243021447001}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.3312883, w: 0.9435296}
+  m_LocalRotation: {x: 0, y: 0, z: -0.3312885, w: 0.94352955}
   m_LocalPosition: {x: -0.16, y: 3.55, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPlanetAbilities
   doubleJump:
-    unlocked: 1
+    unlocked: 0
     activationKey: 1
   dash:
     unlocked: 1
@@ -325,11 +325,8 @@ MonoBehaviour:
   dashSpeed: 16
   dashDuration: 0.2
   dashCooldown: 3
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   projectilePrefab: {fileID: 3806259719694940104, guid: 2dfb00638f5aa30409b37a21eee0a4b4, type: 3}
-  projectileSpawnPoint: {fileID: 7337659107417939159, guid: 783c8c13b4c776841acd56ca213f394a, type: 3}
+  projectileSpawnPoint: {fileID: 6148438512802689531}
   shootCooldown: 0.25
   shootAnimationSafetyTimeout: 0.5833333
 --- !u!114 &1546170414590148222
@@ -461,7 +458,14 @@ MonoBehaviour:
     interactableLayers:
       serializedVersion: 2
       m_Bits: 4294967295
-    gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    gizmoColor: {r: 1, g: 0.9215687, b: 0.015686275, a: 1}
+  - interactionId: UnlockSkill
+    key: 19
+    radius: 0.5
+    interactableLayers:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    gizmoColor: {r: 0, g: 0.0009317398, b: 1, a: 1}
 --- !u!114 &6456396946500743884
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class PlayerAnimationData : MonoBehaviour
     private bool wasAttacking1LastFrame;
     private bool prevIsHit;
     private bool prevIsDead;
+    private bool prevAnimIsDead;
 
     [SerializeField] private PlayerPlanetController planetController;
     [SerializeField] private PlayerSpaceController spaceController;
@@ -80,11 +81,19 @@ public class PlayerAnimationData : MonoBehaviour
         float horizontalSpeed = Vector2.Dot(worldVelocity, localRight);
         float verticalSpeed   = Vector2.Dot(worldVelocity, localUp);
 
+        bool isHit  = playerHealth != null && playerHealth.IsHit;
+        bool isDead = playerHealth != null && playerHealth.IsDead;
+        bool animIsDead = isDead && !isHit;
+
+        // Respawn: isDead paso de true a false — resetear el animator al estado inicial
+        if (prevIsDead && !isDead)
+        {
+            animator.Rebind();
+            animator.Update(0f);
+        }
+
         bool isJumping = false;
         bool isDashing = planetAbilities != null && planetAbilities.IsDashing;
-        bool isHit = playerHealth != null && playerHealth.IsHit;
-        bool isDead = playerHealth != null && playerHealth.IsDead;
-
         bool isGrounded = false;
 
         if (planetController != null && planetController.enabled)
@@ -129,23 +138,18 @@ public class PlayerAnimationData : MonoBehaviour
         animator.SetBool(IsAttacking2Hash, planetAbilities != null && planetAbilities.IsAttacking2Active);
         animator.SetBool(IsDashHash, isDashing);
 
-        // IsDead se dispara una sola vez cuando IsHit ya expiro, garantizando la secuencia TakeHit -> Death
-        bool animIsDead = isDead && !isHit;
-
         if (isHit && !prevIsHit)
         {
             animator.SetTrigger(HitTriggerHash);
-            Debug.Log($"[Anim] HitTrigger disparado  |  isDead: {isDead}");
         }
 
-        if (animIsDead && !prevIsDead)
+        if (animIsDead && !prevAnimIsDead)
         {
             animator.SetTrigger(DeathTriggerHash);
-            Debug.Log("[Anim] Death trigger disparado");
         }
 
-        prevIsHit = isHit;
-
-        prevIsDead = animIsDead;
+        prevIsHit     = isHit;
+        prevIsDead    = isDead;
+        prevAnimIsDead = animIsDead;
     }
 }

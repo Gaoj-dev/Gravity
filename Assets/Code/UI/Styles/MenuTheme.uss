@@ -120,8 +120,8 @@
 .slot-button {
     flex-grow: 1;
     height: 42px;
-    margin-right: 8px;
-    margin-left: 8px;
+    margin-right: 0;
+    margin-left: 0;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     border-bottom-left-radius: 12px;
@@ -130,14 +130,6 @@
     color: rgb(245, 248, 255);
     font-size: 16px;
     -unity-font-style: bold;
-}
-
-.slot-button {
-    margin-left: 0;
-}
-
-.slot-button {
-    margin-right: 0;
 }
 
 .close-row {

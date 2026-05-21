@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(MainMenuUI))]
 public class MainMenuController : MonoBehaviour
 {
+    [SerializeField] private string newGameSceneName = "TutorialArea";
     [SerializeField] private SaveMenuController saveMenuController;
 
     private MainMenuUI mainMenuUI;
@@ -46,16 +48,15 @@ public class MainMenuController : MonoBehaviour
         mainMenuUI.ExitRequested -= ExitGame;
     }
 
-    public void PlayMostRecentSave()
+    private void PlayMostRecentSave()
     {
-        bool loaded = SaveGameManager.LoadMostRecentSlot();
-        if (!loaded)
+        if (!SaveGameManager.LoadMostRecentSlot())
         {
-            Debug.Log("No hay guardados recientes para cargar.");
+            SceneManager.LoadScene(newGameSceneName);
         }
     }
 
-    public void OpenLoadMenu()
+    private void OpenLoadMenu()
     {
         if (saveMenuController == null)
         {
@@ -64,17 +65,16 @@ public class MainMenuController : MonoBehaviour
 
         if (saveMenuController == null)
         {
-            Debug.LogWarning("No SaveMenuController found for MainMenuController.", this);
             return;
         }
 
         saveMenuController.OpenLoadOnlyMenu();
     }
 
-    public void ExitGame()
+    private void ExitGame()
     {
 #if UNITY_EDITOR
-        Debug.Log("Salir pulsado.");
+        UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif

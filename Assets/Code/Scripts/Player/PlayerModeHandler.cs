@@ -18,6 +18,7 @@ public class PlayerModeHandler : MonoBehaviour
     [SerializeField] private Vector3 defaultSceneSpawnPosition = Vector3.zero;
 
     private static PlayerModeHandler instance;
+    public static PlayerModeHandler Instance => instance;
 
     private Rigidbody2D rb;
     private GravityReceiver gravityReceiver;

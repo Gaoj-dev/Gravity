@@ -270,6 +270,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5855276081221974502, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8112061382384614962, guid: 080e80501c71b5d48a2496a07bc5e1eb, type: 3}
       propertyPath: m_Name
       value: SaveMenuUI
@@ -290,6 +294,10 @@ PrefabInstance:
     - target: {fileID: 6727222027278219624, guid: 775921fc0b0e37e4b8755dabb89edea5, type: 3}
       propertyPath: m_Name
       value: MenuUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8028389261136195850, guid: 775921fc0b0e37e4b8755dabb89edea5, type: 3}
+      propertyPath: newGameSceneName
+      value: Tutorial Area
       objectReference: {fileID: 0}
     - target: {fileID: 8028389261136195850, guid: 775921fc0b0e37e4b8755dabb89edea5, type: 3}
       propertyPath: saveMenuController

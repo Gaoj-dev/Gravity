@@ -77,6 +77,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void HandleDeath()
     {
+        int count = Died != null ? Died.GetInvocationList().Length : 0;
+        Debug.Log($"[PlayerHealth] HandleDeath invocado instanceID={GetInstanceID()} Suscriptores: {count}");
         Died?.Invoke();
     }
 }
