@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Code/UI/Styles/MenuTheme.uss?fileID=7433441132597879392&amp;guid=0dac2956ac54d7b49889547fca260381&amp;type=3#MenuTheme" />
+    <ui:VisualElement class="screen-root">
+        <ui:VisualElement class="menu-panel">
+            <ui:Label name="menu-title" text="G-Rabbity" class="menu-title" />
+            <ui:Button name="continue-button" text="Jugar" class="menu-button" />
+            <ui:Button name="load-button" text="Cargar" class="menu-button secondary-button" />
+            <ui:Button name="exit-button" text="Salir" class="menu-button secondary-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,214 @@
+.screen-root {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background-color: rgb(12, 18, 31);
+}
+
+.overlay-root {
+    background-color: rgba(8, 10, 18, 0.74);
+}
+
+.menu-panel {
+    width: 92%;
+    max-width: 560px;
+    max-height: 100%;
+    padding: 28px;
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    border-bottom-left-radius: 22px;
+    border-bottom-right-radius: 22px;
+    background-color: rgba(27, 37, 61, 0.92);
+    border-left-width: 2px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgba(127, 178, 255, 0.45);
+    border-top-color: rgba(127, 178, 255, 0.45);
+    border-right-color: rgba(127, 178, 255, 0.45);
+    border-bottom-color: rgba(127, 178, 255, 0.45);
+}
+
+.gameover-panel {
+    max-width: 500px;
+}
+
+.menu-title {
+    margin-bottom: 20px;
+    color: rgb(240, 245, 255);
+    font-size: 34px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.gameover-title {
+    font-size: 42px;
+    margin-bottom: 28px;
+}
+
+.menu-button {
+    height: 48px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    background-color: rgb(63, 100, 167);
+    color: rgb(245, 248, 255);
+    font-size: 18px;
+    -unity-font-style: bold;
+}
+
+.menu-button:hover {
+    background-color: rgb(84, 124, 196);
+}
+
+.secondary-button {
+    background-color: rgb(53, 69, 104);
+}
+
+.secondary-button:hover {
+    background-color: rgb(72, 91, 132);
+}
+
+.slot-list {
+    margin-top: 8px;
+}
+
+.save-scroll {
+    flex-grow: 1;
+    max-height: 520px;
+    margin-top: 8px;
+}
+
+.slot-card {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 18px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    background-color: rgba(14, 22, 39, 0.72);
+}
+
+.slot-title {
+    color: rgb(243, 247, 255);
+    font-size: 24px;
+    -unity-font-style: bold;
+}
+
+.slot-date {
+    margin-top: 8px;
+    color: rgb(174, 190, 220);
+    font-size: 15px;
+}
+
+.slot-time {
+    margin-top: 2px;
+    color: rgb(174, 190, 220);
+    font-size: 15px;
+}
+
+.slot-button-row {
+    flex-direction: row;
+    margin-top: 14px;
+}
+
+.slot-button {
+    flex-grow: 1;
+    height: 42px;
+    margin-right: 0;
+    margin-left: 0;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: rgb(63, 100, 167);
+    color: rgb(245, 248, 255);
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+
+.close-row {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.close-button {
+    width: 180px;
+}
+
+.compact .screen-root {
+    padding: 14px;
+}
+
+.compact .menu-panel {
+    width: 100%;
+    padding: 18px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.compact .menu-title {
+    margin-bottom: 14px;
+    font-size: 24px;
+}
+
+.compact .gameover-title {
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.compact .menu-button {
+    height: 42px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+.compact .slot-card {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 14px;
+}
+
+.compact .slot-title {
+    font-size: 20px;
+}
+
+.compact .slot-date,
+.compact .slot-time {
+    font-size: 13px;
+}
+
+.compact .slot-button-row {
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.compact .slot-button {
+    height: 40px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 15px;
+}
+
+.compact .close-row {
+    justify-content: center;
+}
+
+.compact .close-button {
+    width: 100%;
+}
+
+.compact .save-scroll {
+    max-height: 420px;
+}

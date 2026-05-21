@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="project://database/Assets/Code/UI/Styles/MenuTheme.uss" />
+
+    <ui:VisualElement class="screen-root">
+        <ui:VisualElement class="menu-panel">
+            <ui:Label class="menu-title" text="Menu de Guardado" />
+
+            <ui:ScrollView class="save-scroll">
+            <ui:VisualElement class="slot-list">
+                <ui:VisualElement class="slot-card">
+                    <ui:Label name="slot-1-title" class="slot-title" text="Guardado 1" />
+                    <ui:Label name="slot-1-date" class="slot-date" text="--/--/----" />
+                    <ui:Label name="slot-1-time" class="slot-time" text="--:--" />
+                    <ui:VisualElement class="slot-button-row">
+                        <ui:Button name="slot-1-save-button" class="slot-button" text="Guardar" />
+                        <ui:Button name="slot-1-load-button" class="slot-button secondary-button" text="Cargar" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="slot-card">
+                    <ui:Label name="slot-2-title" class="slot-title" text="Guardado 2" />
+                    <ui:Label name="slot-2-date" class="slot-date" text="--/--/----" />
+                    <ui:Label name="slot-2-time" class="slot-time" text="--:--" />
+                    <ui:VisualElement class="slot-button-row">
+                        <ui:Button name="slot-2-save-button" class="slot-button" text="Guardar" />
+                        <ui:Button name="slot-2-load-button" class="slot-button secondary-button" text="Cargar" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="slot-card">
+                    <ui:Label name="slot-3-title" class="slot-title" text="Guardado 3" />
+                    <ui:Label name="slot-3-date" class="slot-date" text="--/--/----" />
+                    <ui:Label name="slot-3-time" class="slot-time" text="--:--" />
+                    <ui:VisualElement class="slot-button-row">
+                        <ui:Button name="slot-3-save-button" class="slot-button" text="Guardar" />
+                        <ui:Button name="slot-3-load-button" class="slot-button secondary-button" text="Cargar" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            </ui:ScrollView>
+
+            <ui:VisualElement class="close-row">
+                <ui:Button name="close-button" class="menu-button secondary-button close-button" text="Cerrar Menu" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

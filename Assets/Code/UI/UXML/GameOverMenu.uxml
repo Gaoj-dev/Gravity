@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Code/UI/Styles/MenuTheme.uss?fileID=7433441132597879392&amp;guid=0dac2956ac54d7b49889547fca260381&amp;type=3#MenuTheme" />
+    <ui:VisualElement class="screen-root overlay-root">
+        <ui:VisualElement class="menu-panel gameover-panel">
+            <ui:Label name="gameover-title" text="Game Over" class="menu-title gameover-title" />
+            <ui:Button name="gameover-load-button" text="Cargar" class="menu-button" />
+            <ui:Button name="gameover-exit-button" text="Salir" class="menu-button secondary-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
