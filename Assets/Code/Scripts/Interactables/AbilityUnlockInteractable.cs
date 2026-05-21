@@ -8,6 +8,19 @@ public class AbilityUnlockInteractable : MonoBehaviour, IInteractable
 
     public string InteractionId => "UnlockSkill";
 
+    private void Start()
+    {
+        PlayerPlanetAbilities abilities = PlayerModeHandler.Instance != null
+            ? PlayerModeHandler.Instance.GetComponent<PlayerPlanetAbilities>()
+            : FindFirstObjectByType<PlayerPlanetAbilities>();
+
+        if (abilities != null && abilities.IsAbilityUnlocked(ability))
+        {
+            used = true;
+            gameObject.SetActive(false);
+        }
+    }
+
     public void Interact()
     {
         if (used)

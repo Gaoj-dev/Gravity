@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayerGoldWallet : MonoBehaviour
 {
     public int GoldCount { get; private set; }
+
+    public event Action GoldChanged;
 
     public void AddGold(int amount)
     {
@@ -12,10 +15,12 @@ public class PlayerGoldWallet : MonoBehaviour
         }
 
         GoldCount += amount;
+        GoldChanged?.Invoke();
     }
 
     public void SetGoldCount(int amount)
     {
         GoldCount = Mathf.Max(0, amount);
+        GoldChanged?.Invoke();
     }
 }

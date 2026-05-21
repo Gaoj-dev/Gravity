@@ -212,7 +212,7 @@ public static class SaveGameManager
                 rotationZ = player.transform.eulerAngles.z,
                 linearVelocity = new SerializableVector2(rb != null ? rb.linearVelocity : Vector2.zero),
                 angularVelocity = rb != null ? rb.angularVelocity : 0f,
-                currentHealth = playerHealth != null ? playerHealth.CurrentHealth : 0f,
+                currentHealth = playerHealth != null ? playerHealth.CurrentHealth : 0,
                 goldCount = playerGoldWallet != null ? playerGoldWallet.GoldCount : 0,
                 abilities = playerAbilities != null ? playerAbilities.CaptureSaveData() : new PlayerAbilitySaveData()
             }
