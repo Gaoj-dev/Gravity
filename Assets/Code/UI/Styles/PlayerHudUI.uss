@@ -1,0 +1,26 @@
+.hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.health-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    flex-direction: row;
+}
+
+/* Recuerda configurar Filter Mode a Point (no filter) en cada sprite de corazon para pixel art */
+.heart {
+    width: 64px;
+    height: 64px;
+    margin-right: 8px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.heart--empty {
+    /* Modificador para corazones vacios, la textura se asigna por script */
+}

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Code/UI/Styles/PlayerHudUI.uss" />
+    <ui:VisualElement name="hud" class="hud">
+        <ui:VisualElement name="health-container" class="health-container" />
+    </ui:VisualElement>
+</ui:UXML>
