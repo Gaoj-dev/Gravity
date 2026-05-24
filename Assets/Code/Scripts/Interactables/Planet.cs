@@ -26,6 +26,9 @@ public class Planet : MonoBehaviour, IInteractable
             return;
         }
 
+        if (PlayerModeHandler.Instance != null && GameModeManager.CurrentMode == GameMode.Space)
+            GameModeManager.StoreSpaceReturnPosition(PlayerModeHandler.Instance.transform.position);
+
         GameModeManager.LoadSceneForMode(sceneToLoad, GameMode.Planet);
     }
 }

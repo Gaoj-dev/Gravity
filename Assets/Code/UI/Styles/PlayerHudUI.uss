@@ -24,3 +24,12 @@
 .heart--empty {
     /* Modificador para corazones vacios, la textura se asigna por script */
 }
+
+.gold-label {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: rgb(255, 210, 50);
+    font-size: 24px;
+    -unity-font-style: bold;
+}

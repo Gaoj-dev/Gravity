@@ -313,12 +313,12 @@ MonoBehaviour:
     unlocked: 0
     activationKey: 1
   dash:
-    unlocked: 1
+    unlocked: 0
     activationKey: 51
   airDashUpgrade:
-    unlocked: 1
+    unlocked: 0
   shoot:
-    unlocked: 1
+    unlocked: 0
     activationKey: 20
   doubleJumpForce: 12
   doubleJumpHorizontalBoost: 8

@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public enum GameMode
@@ -11,6 +12,26 @@ public static class GameModeManager
     public static GameMode CurrentMode { get; private set; } = GameMode.Space;
 
     public static event System.Action<GameMode> ModeChanged;
+
+    private static Vector3? spaceReturnPosition;
+
+    public static void StoreSpaceReturnPosition(Vector3 position)
+    {
+        spaceReturnPosition = position;
+    }
+
+    public static bool TryConsumeSpaceReturnPosition(out Vector3 position)
+    {
+        if (spaceReturnPosition.HasValue)
+        {
+            position = spaceReturnPosition.Value;
+            spaceReturnPosition = null;
+            return true;
+        }
+
+        position = Vector3.zero;
+        return false;
+    }
 
     public static void SetMode(GameMode mode)
     {

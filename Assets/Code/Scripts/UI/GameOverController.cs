@@ -7,7 +7,7 @@ public class GameOverController : MonoBehaviour
 {
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private SaveMenuController saveMenuController;
-    [SerializeField] private string startMenuSceneName = "Start Menu";
+    [SerializeField] private string startMenuSceneName = "StartMenu";
     [SerializeField] private float extraDelayAfterDeath = 0.5f;
 
     private GameOverUI gameOverUI;
@@ -60,6 +60,8 @@ public class GameOverController : MonoBehaviour
             gameOverUI.ExitRequested += ReturnToStartMenu;
             gameOverUI.LoadRequested += OpenLoadMenu;
         }
+
+        InstantKillZone.GameOverRequested += HandlePlayerDied;
     }
 
     private void OnDisable()
@@ -75,6 +77,8 @@ public class GameOverController : MonoBehaviour
             gameOverUI.ExitRequested -= ReturnToStartMenu;
             gameOverUI.LoadRequested -= OpenLoadMenu;
         }
+
+        InstantKillZone.GameOverRequested -= HandlePlayerDied;
     }
 
     private void HandlePlayerDied()

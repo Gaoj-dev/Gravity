@@ -16,6 +16,8 @@ public class PlayerSpaceController : MonoBehaviour
     [Min(0f)] public float jumpBufferTime = 0.12f;
     [Min(0f)] public float coyoteTime = 0.1f;
 
+    [Min(0f)] public float jumpAnimDelay = 0.1f;
+
     private GravityReceiver gravityReceiver;
     private GroundDetector groundDetector;
     private SpriteRenderer sr;
@@ -23,8 +25,9 @@ public class PlayerSpaceController : MonoBehaviour
     private float moveInput;
     private float lastJumpPressedTime = float.NegativeInfinity;
     private float lastGroundedTime = float.NegativeInfinity;
+    private float notGroundedFor = 0f;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    public bool IsJumping => !groundDetector.EstaSuelo;
+    public bool IsJumping => notGroundedFor >= jumpAnimDelay;
 
     private void Awake()
     {
@@ -99,6 +102,11 @@ public class PlayerSpaceController : MonoBehaviour
         if (groundDetector.EstaSuelo)
         {
             lastGroundedTime = Time.time;
+            notGroundedFor = 0f;
+        }
+        else
+        {
+            notGroundedFor += Time.fixedDeltaTime;
         }
 
         Vector2 tangentDir = Vector2.Perpendicular(gravityDir).normalized;
@@ -149,7 +157,7 @@ public class PlayerSpaceController : MonoBehaviour
     {
         lastJumpPressedTime = float.NegativeInfinity;
         lastGroundedTime = float.NegativeInfinity;
-        StartCoroutine(FlashRed());
+        // StartCoroutine(FlashRed());
 
         Vector2 jumpDir = -gravityDir;
         if (Mathf.Abs(moveInput) > 0.01f)
@@ -163,7 +171,7 @@ public class PlayerSpaceController : MonoBehaviour
         Debug.DrawRay(transform.position, jumpDir * salto, Color.green, 1f);
     }
 
-    private IEnumerator FlashRed()
+    /**private IEnumerator FlashRed()
     {
         if (sr == null)
         {
@@ -173,5 +181,5 @@ public class PlayerSpaceController : MonoBehaviour
         sr.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         sr.color = originalColor;
-    }
+    }*/
 }

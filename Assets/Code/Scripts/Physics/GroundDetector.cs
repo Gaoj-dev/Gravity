@@ -35,9 +35,7 @@ public class GroundDetector : MonoBehaviour
     {
         Vector2 gravityDir = gravityReceiver != null ? gravityReceiver.GetGravityDirection() : Vector2.down;
         if (gravityDir == Vector2.zero)
-        {
             gravityDir = Vector2.down;
-        }
 
         bool isGroundContact = false;
         Vector2 upDirection = -gravityDir;
@@ -53,13 +51,9 @@ public class GroundDetector : MonoBehaviour
 
         int colliderId = collision.collider.GetInstanceID();
         if (isGroundContact)
-        {
             groundedColliders.Add(colliderId);
-        }
         else
-        {
             groundedColliders.Remove(colliderId);
-        }
 
         EstaSuelo = groundedColliders.Count > 0;
     }

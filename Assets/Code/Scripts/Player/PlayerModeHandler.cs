@@ -175,6 +175,13 @@ public class PlayerModeHandler : MonoBehaviour
     private void MovePlayerToSceneSpawn(string sceneName)
     {
         Vector3 spawnPosition = defaultSceneSpawnPosition;
+
+        if (GameModeManager.CurrentMode == GameMode.Space &&
+            GameModeManager.TryConsumeSpaceReturnPosition(out Vector3 returnPosition))
+        {
+            spawnPosition = returnPosition;
+        }
+
         if (SaveGameManager.TryGetPendingPlayerPosition(sceneName, out Vector3 savedPosition))
         {
             spawnPosition = savedPosition;

@@ -75,6 +75,16 @@ public class PlayerHealth : MonoBehaviour
         isDead = currentHealth <= 0f;
     }
 
+    public void ForceKill()
+    {
+        if (isDead)
+            return;
+
+        currentHealth = 0;
+        isDead = true;
+        HandleDeath();
+    }
+
     private void HandleDeath()
     {
         int count = Died != null ? Died.GetInvocationList().Length : 0;

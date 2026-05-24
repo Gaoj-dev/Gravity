@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,12 +6,12 @@ public class PlayerHudUI : MonoBehaviour
 {
     [SerializeField] private Sprite heartFull;
     [SerializeField] private Sprite heartEmpty;
-    [SerializeField] private TextMeshProUGUI goldLabel;
 
     private UIDocument uiDocument;
     private PlayerHealth playerHealth;
     private PlayerGoldWallet goldWallet;
     private VisualElement healthContainer;
+    private Label goldLabel;
     private int cachedMax = -1;
 
     private void Awake()
@@ -48,6 +47,7 @@ public class PlayerHudUI : MonoBehaviour
             return;
 
         healthContainer = uiDocument.rootVisualElement.Q<VisualElement>("health-container");
+        goldLabel = uiDocument.rootVisualElement.Q<Label>("gold-label");
     }
 
     private void OnDisable()
@@ -73,7 +73,7 @@ public class PlayerHudUI : MonoBehaviour
     private void RefreshGold()
     {
         if (goldLabel != null && goldWallet != null)
-            goldLabel.SetText($"Oro: {goldWallet.GoldCount}");
+            goldLabel.text = $"Oro: {goldWallet.GoldCount}";
     }
 
     public void UpdateHealth(int current, int max)

@@ -83,5 +83,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameOverController
   playerHealth: {fileID: 0}
   saveMenuController: {fileID: 0}
-  startMenuSceneName: Start Menu
+  startMenuSceneName: StartMenu
   extraDelayAfterDeath: 0.5

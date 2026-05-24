@@ -32611,7 +32611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7819616552473303189, guid: 23d33f312fd3c1849869913f88023cc0, type: 3}
       propertyPath: shoot.unlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819616552473303189, guid: 23d33f312fd3c1849869913f88023cc0, type: 3}
       propertyPath: projectileSpawnPoint
