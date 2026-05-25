@@ -22,6 +22,8 @@ public class WorldSaveData
 {
     public string sceneName = string.Empty;
     public string gameMode = nameof(GameMode.Space);
+    public bool hasSpaceReturnPosition;
+    public SerializableVector3 spaceReturnPosition;
 }
 
 [Serializable]

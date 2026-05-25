@@ -105,6 +105,11 @@ public static class SaveGameManager
         pendingSceneName = saveFileData.world.sceneName;
         pendingLoadData = saveFileData;
 
+        if (saveFileData.world.hasSpaceReturnPosition)
+            GameModeManager.StoreSpaceReturnPosition(saveFileData.world.spaceReturnPosition.ToVector3());
+        else
+            GameModeManager.ClearSpaceReturnPosition();
+
         GameModeManager.LoadSceneForMode(saveFileData.world.sceneName, ParseGameMode(saveFileData.world.gameMode));
         return true;
     }
@@ -193,6 +198,7 @@ public static class SaveGameManager
         PlayerPlanetAbilities playerAbilities = player.GetComponent<PlayerPlanetAbilities>();
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
 
+        bool hasSpacePos = GameModeManager.TryGetSpaceReturnPosition(out Vector3 spacePos);
         return new SaveFileData
         {
             version = 1,
@@ -204,7 +210,9 @@ public static class SaveGameManager
             world = new WorldSaveData
             {
                 sceneName = activeScene.name,
-                gameMode = GameModeManager.CurrentMode.ToString()
+                gameMode = GameModeManager.CurrentMode.ToString(),
+                hasSpaceReturnPosition = hasSpacePos,
+                spaceReturnPosition = hasSpacePos ? new SerializableVector3(spacePos) : new SerializableVector3()
             },
             player = new PlayerSaveData
             {

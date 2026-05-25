@@ -15,9 +15,27 @@ public static class GameModeManager
 
     private static Vector3? spaceReturnPosition;
 
+    public static bool HasSpaceReturnPosition => spaceReturnPosition.HasValue;
+
     public static void StoreSpaceReturnPosition(Vector3 position)
     {
         spaceReturnPosition = position;
+    }
+
+    public static void ClearSpaceReturnPosition()
+    {
+        spaceReturnPosition = null;
+    }
+
+    public static bool TryGetSpaceReturnPosition(out Vector3 position)
+    {
+        if (spaceReturnPosition.HasValue)
+        {
+            position = spaceReturnPosition.Value;
+            return true;
+        }
+        position = Vector3.zero;
+        return false;
     }
 
     public static bool TryConsumeSpaceReturnPosition(out Vector3 position)
