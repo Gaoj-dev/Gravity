@@ -272,6 +272,10 @@ public class PlayerPlanetAbilities : MonoBehaviour
             projectile = projectileInstance.AddComponent<PlayerProjectile>();
         }
 
+        Collider2D projectileCollider = projectileInstance.GetComponent<Collider2D>();
+        if (projectileCollider != null && playerCollider != null)
+            Physics2D.IgnoreCollision(playerCollider, projectileCollider);
+
         projectile.Launch(controller.FacingDirection);
     }
 

@@ -46,7 +46,6 @@ public class PlayerHudUI : MonoBehaviour
         if (uiDocument.rootVisualElement == null)
             return;
 
-        uiDocument.rootVisualElement.pickingMode = PickingMode.Ignore;
         healthContainer = uiDocument.rootVisualElement.Q<VisualElement>("health-container");
         goldLabel = uiDocument.rootVisualElement.Q<Label>("gold-label");
     }

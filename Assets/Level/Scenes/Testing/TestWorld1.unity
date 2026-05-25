@@ -2892,13 +2892,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnlockSkill
       objectReference: {fileID: 0}
+    - target: {fileID: 2002464008925976908, guid: fba4e6d067e04cc4ca6bbdee449d2da1, type: 3}
+      propertyPath: ability
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5641574560074859211, guid: fba4e6d067e04cc4ca6bbdee449d2da1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.05
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 5641574560074859211, guid: fba4e6d067e04cc4ca6bbdee449d2da1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.01
+      value: -3.98
       objectReference: {fileID: 0}
     - target: {fileID: 5641574560074859211, guid: fba4e6d067e04cc4ca6bbdee449d2da1, type: 3}
       propertyPath: m_LocalPosition.z
