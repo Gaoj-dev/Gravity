@@ -104,7 +104,10 @@ public class Interactor : MonoBehaviour
         {
             if (triggerContact == null)
             {
-                invalidContacts ??= new List<Collider2D>();
+                if (invalidContacts == null)
+                {
+                    invalidContacts = new List<Collider2D>();
+                }
                 invalidContacts.Add(triggerContact);
                 continue;
             }

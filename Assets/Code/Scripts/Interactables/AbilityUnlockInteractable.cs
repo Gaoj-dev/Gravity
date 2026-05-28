@@ -28,9 +28,16 @@ public class AbilityUnlockInteractable : MonoBehaviour, IInteractable
             return;
         }
 
-        PlayerPlanetAbilities abilities = PlayerModeHandler.Instance != null
-            ? PlayerModeHandler.Instance.GetComponent<PlayerPlanetAbilities>()
-            : FindFirstObjectByType<PlayerPlanetAbilities>();
+        PlayerPlanetAbilities abilities;
+
+        if (PlayerModeHandler.Instance != null)
+        {
+            abilities = PlayerModeHandler.Instance.GetComponent<PlayerPlanetAbilities>();
+        }
+        else
+        {
+            abilities = FindFirstObjectByType<PlayerPlanetAbilities>();
+        }
 
         if (abilities == null)
         {

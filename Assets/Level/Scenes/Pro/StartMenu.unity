@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8028389261136195850, guid: 775921fc0b0e37e4b8755dabb89edea5, type: 3}
       propertyPath: newGameSceneName
-      value: Tutorial Area
+      value: TutorialArea
       objectReference: {fileID: 0}
     - target: {fileID: 8028389261136195850, guid: 775921fc0b0e37e4b8755dabb89edea5, type: 3}
       propertyPath: saveMenuController
