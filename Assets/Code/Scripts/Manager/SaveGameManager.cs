@@ -46,7 +46,8 @@ public static class SaveGameManager
     public static SaveSlotSnapshot GetSlot(int slotIndex)
     {
         EnsureInitialized();
-        return IsValidSlotIndex(slotIndex) ? Slots[slotIndex] : default;
+        if (IsValidSlotIndex(slotIndex)) return Slots[slotIndex];
+        else return default;
     }
 
     public static bool SaveToSlot(int slotIndex)
@@ -83,7 +84,7 @@ public static class SaveGameManager
 
         Slots[slotIndex] = CreateSnapshotFromSaveFile(saveFileData);
 
-        SlotsChanged?.Invoke();
+        if (SlotsChanged != null) SlotsChanged.Invoke();
         return true;
     }
 
@@ -275,7 +276,8 @@ public static class SaveGameManager
 
     private static GameMode ParseGameMode(string gameMode)
     {
-        return Enum.TryParse(gameMode, true, out GameMode parsedMode) ? parsedMode : GameMode.Space;
+        if (Enum.TryParse(gameMode, true, out GameMode parsedMode)) return parsedMode;
+        else return GameMode.Space;
     }
 
     private static DateTime ParseSavedTime(string isoUtc)

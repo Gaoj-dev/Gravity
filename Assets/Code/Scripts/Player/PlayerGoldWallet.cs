@@ -15,12 +15,12 @@ public class PlayerGoldWallet : MonoBehaviour
         }
 
         GoldCount += amount;
-        GoldChanged?.Invoke();
+        if (GoldChanged != null) GoldChanged.Invoke();
     }
 
     public void SetGoldCount(int amount)
     {
         GoldCount = Mathf.Max(0, amount);
-        GoldChanged?.Invoke();
+        if (GoldChanged != null) GoldChanged.Invoke();
     }
 }

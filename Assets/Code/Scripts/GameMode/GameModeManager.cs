@@ -59,7 +59,7 @@ public static class GameModeManager
         }
 
         CurrentMode = mode;
-        ModeChanged?.Invoke(CurrentMode);
+        if (ModeChanged != null) ModeChanged.Invoke(CurrentMode);
     }
 
     public static void LoadSceneForMode(string sceneName, GameMode mode)

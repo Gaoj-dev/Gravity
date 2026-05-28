@@ -255,7 +255,7 @@ public class PlayerPlanetAbilities : MonoBehaviour
         StartCoroutine(ShootCooldownRoutine());
     }
 
-    // Animation Event: llamalo en el frame exacto del clip Attack2 donde debe salir el proyectil.
+    // Animation Event: llamar en el frame exacto del clip Attack2 donde debe salir el proyectil.
     public void SpawnProjectileFromAnimationEvent()
     {
         if (!isShootingAttack || projectileSpawnedThisAttack || projectilePrefab == null)
@@ -279,7 +279,7 @@ public class PlayerPlanetAbilities : MonoBehaviour
         projectile.Launch(controller.FacingDirection);
     }
 
-    // Animation Event: llamalo al final del clip Attack2 para devolver el control al jugador.
+    // Animation Event: llamar al final del clip Attack2 para devolver el control al jugador.
     public void EndShootAttackFromAnimationEvent()
     {
         if (!isShootingAttack)
@@ -339,7 +339,9 @@ public class PlayerPlanetAbilities : MonoBehaviour
             return currentSpawnPoint.position;
         }
 
-        float horizontalOffset = controller != null ? controller.FacingDirection.x * 0.6f : 0f;
+        float horizontalOffset;
+        if (controller != null) horizontalOffset = controller.FacingDirection.x * 0.6f;
+        else horizontalOffset = 0f;
         return transform.position + new Vector3(horizontalOffset, 0f, 0f);
     }
 

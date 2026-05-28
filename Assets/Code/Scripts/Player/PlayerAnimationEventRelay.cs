@@ -20,21 +20,21 @@ public class PlayerAnimationEventRelay : MonoBehaviour
 
     public void SpawnProjectileFromAnimationEvent()
     {
-        planetAbilities?.SpawnProjectileFromAnimationEvent();
+        if (planetAbilities != null) planetAbilities.SpawnProjectileFromAnimationEvent();
     }
 
     public void EndShootAttackFromAnimationEvent()
     {
-        planetAbilities?.EndShootAttackFromAnimationEvent();
+        if (planetAbilities != null) planetAbilities.EndShootAttackFromAnimationEvent();
     }
 
     public void PerformMeleeHitAnimationEvent()
     {
-        meleeAttack?.PerformMeleeHitAnimationEvent();
+        if (meleeAttack != null) meleeAttack.PerformMeleeHitAnimationEvent();
     }
 
     public void EndMeleeAttackFromAnimationEvent()
     {
-        meleeAttack?.EndMeleeAttackFromAnimationEvent();
+        if (meleeAttack != null) meleeAttack.EndMeleeAttackFromAnimationEvent();
     }
 }

@@ -124,7 +124,9 @@ public class PlayerSpaceController : MonoBehaviour
         float tangentialSpeed = Vector2.Dot(velocity, tangentDir);
         float targetSpeed = moveInput * maxHorizontalSpeed;
 
-        float acceleration = groundDetector.EstaSuelo ? groundAcceleration : airAcceleration;
+        float acceleration;
+        if (groundDetector.EstaSuelo) acceleration = groundAcceleration;
+        else acceleration = airAcceleration;
         float newTangentialSpeed;
 
         if (Mathf.Abs(moveInput) > 0.01f)
@@ -166,7 +168,7 @@ public class PlayerSpaceController : MonoBehaviour
             jumpDir.Normalize();
         }
 
-        // Forzamos una velocidad de salto clara para que el salto diagonal siempre responda.
+        // Fuerza una velocidad de salto clara para que el salto diagonal siempre responda.
         rb.linearVelocity = jumpDir * salto;
         Debug.DrawRay(transform.position, jumpDir * salto, Color.green, 1f);
     }

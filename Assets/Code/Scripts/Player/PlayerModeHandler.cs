@@ -166,7 +166,8 @@ public class PlayerModeHandler : MonoBehaviour
 
             if (!isSpaceMode)
             {
-                rb.gravityScale = planetController != null ? planetController.ForcedGravityScale : 1f;
+                if (planetController != null) rb.gravityScale = planetController.ForcedGravityScale;
+                else rb.gravityScale = 1f;
                 rb.rotation = 0f;
             }
         }
@@ -213,8 +214,8 @@ public class PlayerModeHandler : MonoBehaviour
             rb.angularVelocity = playerData.angularVelocity;
         }
 
-        playerHealth?.SetCurrentHealth(playerData.currentHealth);
-        playerGoldWallet?.SetGoldCount(playerData.goldCount);
-        playerAbilities?.ApplySaveData(playerData.abilities);
+        if (playerHealth != null) playerHealth.SetCurrentHealth(playerData.currentHealth);
+        if (playerGoldWallet != null) playerGoldWallet.SetGoldCount(playerData.goldCount);
+        if (playerAbilities != null) playerAbilities.ApplySaveData(playerData.abilities);
     }
 }

@@ -13,6 +13,6 @@ public class InstantKillZone : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer(playerLayerName))
             return;
 
-        GameOverRequested?.Invoke();
+        if (GameOverRequested != null) GameOverRequested.Invoke();
     }
 }

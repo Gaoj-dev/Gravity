@@ -118,7 +118,9 @@ public class PlayerPlanetController : MonoBehaviour
         }
 
         float targetSpeed = moveInput * moveSpeed;
-        float acceleration = groundDetector.EstaSuelo ? groundAcceleration : airAcceleration;
+        float acceleration;
+        if (groundDetector.EstaSuelo) acceleration = groundAcceleration;
+        else acceleration = airAcceleration;
 
         if (Mathf.Abs(moveInput) > 0.01f)
         {

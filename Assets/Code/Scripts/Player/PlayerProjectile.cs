@@ -23,8 +23,8 @@ public class PlayerProjectile : MonoBehaviour
     public void Launch(Vector2 launchDirection)
     {
         hasLaunched = true;
-        direction = launchDirection.normalized == Vector2.zero 
-        ? Vector2.right : launchDirection.normalized;
+        if (launchDirection.normalized == Vector2.zero) direction = Vector2.right;
+        else direction = launchDirection.normalized;
 
         sr.flipX = direction.x < 0;
 

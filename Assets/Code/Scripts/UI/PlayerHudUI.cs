@@ -96,7 +96,10 @@ public class PlayerHudUI : MonoBehaviour
         for (int i = 0; i < healthContainer.childCount; i++)
         {
             VisualElement heart = healthContainer[i];
-            heart.style.backgroundImage = new StyleBackground(i < current ? heartFull : heartEmpty);
+            Sprite heartSprite;
+            if (i < current) heartSprite = heartFull;
+            else heartSprite = heartEmpty;
+            heart.style.backgroundImage = new StyleBackground(heartSprite);
             heart.EnableInClassList("heart--empty", i >= current);
         }
     }

@@ -88,7 +88,7 @@ public class SaveMenuController : MonoBehaviour
 
         Action callback = closeCallback;
         closeCallback = null;
-        callback?.Invoke();
+        if (callback != null) callback.Invoke();
     }
 
     private void HandleSaveRequested(int slotIndex)

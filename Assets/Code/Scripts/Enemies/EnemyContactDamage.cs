@@ -52,7 +52,9 @@ public class EnemyContactDamage : MonoBehaviour
             return;
         }
 
-        Vector2 direction = (target.transform.position.x >= transform.position.x) ? Vector2.right : Vector2.left;
+        Vector2 direction;
+        if (target.transform.position.x >= transform.position.x) direction = Vector2.right;
+        else direction = Vector2.left;
         Vector2 knockback = new Vector2(direction.x * knockbackForce, knockbackForce * 0.35f);
 
         if (playerHealth.TryTakeDamage(damage, knockback))

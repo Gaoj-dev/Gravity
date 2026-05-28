@@ -187,7 +187,9 @@ public class Interactor : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Transform origin = detectionOrigin != null ? detectionOrigin : transform;
+        Transform origin;
+        if (detectionOrigin != null) origin = detectionOrigin;
+        else origin = transform;
         if (interactionBindings == null)
         {
             return;

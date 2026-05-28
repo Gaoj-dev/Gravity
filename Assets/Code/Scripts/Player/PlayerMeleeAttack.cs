@@ -82,7 +82,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
     }
 
-    // Animation Event: llamalo en el frame donde el arma realmente impacta.
+    // Animation Event: llamar en el frame donde el arma realmente impacta.
     public void PerformMeleeHitAnimationEvent()
     {
         if (!isMeleeAttackActive || hitPerformedThisAttack)
@@ -109,7 +109,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
     }
 
-    // Animation Event: llamalo al final del clip para apagar el estado de ataque si quieres cerrarlo exacto.
+    // Animation Event: llamar al final del clip para cerrar el estado de ataque en el frame exacto.
     public void EndMeleeAttackFromAnimationEvent()
     {
         if (!isMeleeAttackActive)
@@ -178,9 +178,13 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Transform origin = attackOrigin != null ? attackOrigin : transform;
+        Transform origin;
+        if (attackOrigin != null) origin = attackOrigin;
+        else origin = transform;
         Vector2 facing = transform.right;
-        PlayerPlanetController controller = Application.isPlaying ? planetController : GetComponent<PlayerPlanetController>();
+        PlayerPlanetController controller;
+        if (Application.isPlaying) controller = planetController;
+        else controller = GetComponent<PlayerPlanetController>();
 
         if (controller != null)
         {

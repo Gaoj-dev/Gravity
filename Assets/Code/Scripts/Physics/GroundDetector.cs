@@ -33,7 +33,9 @@ public class GroundDetector : MonoBehaviour
 
     private void UpdateCollisionState(Collision2D collision)
     {
-        Vector2 gravityDir = gravityReceiver != null ? gravityReceiver.GetGravityDirection() : Vector2.down;
+        Vector2 gravityDir;
+        if (gravityReceiver != null) gravityDir = gravityReceiver.GetGravityDirection();
+        else gravityDir = Vector2.down;
         if (gravityDir == Vector2.zero)
             gravityDir = Vector2.down;
 

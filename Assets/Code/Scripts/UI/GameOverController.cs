@@ -96,7 +96,9 @@ public class GameOverController : MonoBehaviour
     {
         shown = true;
 
-        float waitTime = playerHealth != null ? Mathf.Max(0f, playerHealth.DeathAnimationDuration) : 0f;
+        float waitTime;
+        if (playerHealth != null) waitTime = Mathf.Max(0f, playerHealth.DeathAnimationDuration);
+        else waitTime = 0f;
         waitTime += extraDelayAfterDeath;
         Debug.Log($"[GameOver] Coroutine iniciado. Esperando {waitTime}s. gameOverUI={gameOverUI}");
         yield return new WaitForSecondsRealtime(waitTime);

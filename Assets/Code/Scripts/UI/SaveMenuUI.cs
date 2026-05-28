@@ -107,8 +107,10 @@ public class SaveMenuUI : MonoBehaviour
             return;
         }
 
-        root.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
-        root.pickingMode = visible ? PickingMode.Position : PickingMode.Ignore;
+        if (visible) root.style.display = DisplayStyle.Flex;
+        else root.style.display = DisplayStyle.None;
+        if (visible) root.pickingMode = PickingMode.Position;
+        else root.pickingMode = PickingMode.Ignore;
     }
 
     private void BindUi()
@@ -155,7 +157,8 @@ public class SaveMenuUI : MonoBehaviour
 
             if (saveButton != null)
             {
-                saveButton.style.display = currentMode == SaveMenuMode.SaveAndLoad ? DisplayStyle.Flex : DisplayStyle.None;
+                if (currentMode == SaveMenuMode.SaveAndLoad) saveButton.style.display = DisplayStyle.Flex;
+                else saveButton.style.display = DisplayStyle.None;
             }
 
             if (loadButton != null)
@@ -188,8 +191,8 @@ public class SaveMenuUI : MonoBehaviour
 
     private void HandleClosePressed()
     {
-        onClosePressed?.Invoke();
-        CloseRequested?.Invoke();
+        if (onClosePressed != null) onClosePressed.Invoke();
+        if (CloseRequested != null) CloseRequested.Invoke();
     }
 
     private void HandleSavePressed(int slotIndex)
@@ -199,8 +202,8 @@ public class SaveMenuUI : MonoBehaviour
             return;
         }
 
-        slots[slotIndex].onSavePressed?.Invoke();
-        SaveRequested?.Invoke(slotIndex);
+        if (slots[slotIndex].onSavePressed != null) slots[slotIndex].onSavePressed.Invoke();
+        if (SaveRequested != null) SaveRequested.Invoke(slotIndex);
         Debug.Log($"Guardar pulsado en slot {slotIndex + 1}.");
     }
 
@@ -211,8 +214,8 @@ public class SaveMenuUI : MonoBehaviour
             return;
         }
 
-        slots[slotIndex].onLoadPressed?.Invoke();
-        LoadRequested?.Invoke(slotIndex);
+        if (slots[slotIndex].onLoadPressed != null) slots[slotIndex].onLoadPressed.Invoke();
+        if (LoadRequested != null) LoadRequested.Invoke(slotIndex);
         Debug.Log($"Cargar pulsado en slot {slotIndex + 1}.");
     }
 

@@ -43,12 +43,18 @@ public class MainMenuUI : MonoBehaviour
         root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
 
-        RegisterButton(root.Q<Button>("continue-button"), () => PlayRequested?.Invoke());
-        RegisterButton(root.Q<Button>("load-button"), () => LoadRequested?.Invoke());
-        RegisterButton(root.Q<Button>("exit-button"), () => ExitRequested?.Invoke());
+        RegisterButton(root.Q<Button>("continue-button"), HandleContinueButtonClicked);
+        RegisterButton(root.Q<Button>("load-button"), HandleLoadButtonClicked);
+        RegisterButton(root.Q<Button>("exit-button"), HandleExitButtonClicked);
 
         UpdateResponsiveState(root.resolvedStyle.width);
     }
+
+    private void HandleContinueButtonClicked() { if (PlayRequested != null) PlayRequested.Invoke(); }
+
+    private void HandleLoadButtonClicked() { if (LoadRequested != null) LoadRequested.Invoke(); }
+
+    private void HandleExitButtonClicked() { if (ExitRequested != null) ExitRequested.Invoke(); }
 
     private void RegisterButton(Button button, System.Action callback)
     {

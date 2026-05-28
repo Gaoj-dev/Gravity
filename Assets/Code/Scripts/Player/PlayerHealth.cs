@@ -54,7 +54,7 @@ public class PlayerHealth : MonoBehaviour
             return true;
         }
 
-        Damaged?.Invoke();
+        if (Damaged != null) Damaged.Invoke();
 
         return true;
     }
@@ -87,8 +87,10 @@ public class PlayerHealth : MonoBehaviour
 
     private void HandleDeath()
     {
-        int count = Died != null ? Died.GetInvocationList().Length : 0;
+        int count;
+        if (Died != null) count = Died.GetInvocationList().Length;
+        else count = 0;
         Debug.Log($"[PlayerHealth] HandleDeath invocado instanceID={GetInstanceID()} Suscriptores: {count}");
-        Died?.Invoke();
+        if (Died != null) Died.Invoke();
     }
 }

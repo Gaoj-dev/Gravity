@@ -86,7 +86,9 @@ public class EnemyPatrolController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector2 center = Application.isPlaying ? patrolCenter : transform.position;
+        Vector2 center;
+        if (Application.isPlaying) center = patrolCenter;
+        else center = transform.position;
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(center, patrolRadius);

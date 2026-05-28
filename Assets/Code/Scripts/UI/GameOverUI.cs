@@ -46,8 +46,10 @@ public class GameOverUI : MonoBehaviour
             return;
         }
 
-        root.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
-        root.pickingMode = visible ? PickingMode.Position : PickingMode.Ignore;
+        if (visible) root.style.display = DisplayStyle.Flex;
+        else root.style.display = DisplayStyle.None;
+        if (visible) root.pickingMode = PickingMode.Position;
+        else root.pickingMode = PickingMode.Ignore;
     }
 
     private void BindUi()
@@ -61,11 +63,15 @@ public class GameOverUI : MonoBehaviour
         root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
 
-        RegisterButton(root.Q<Button>("gameover-exit-button"), () => ExitRequested?.Invoke());
-        RegisterButton(root.Q<Button>("gameover-load-button"), () => LoadRequested?.Invoke());
+        RegisterButton(root.Q<Button>("gameover-exit-button"), HandleExitButtonClicked);
+        RegisterButton(root.Q<Button>("gameover-load-button"), HandleLoadButtonClicked);
 
         UpdateResponsiveState(root.resolvedStyle.width);
     }
+
+    private void HandleExitButtonClicked() { if (ExitRequested != null) ExitRequested.Invoke(); }
+
+    private void HandleLoadButtonClicked() { if (LoadRequested != null) LoadRequested.Invoke(); }
 
     private static void RegisterButton(Button button, Action callback)
     {
