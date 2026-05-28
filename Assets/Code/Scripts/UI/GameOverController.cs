@@ -109,6 +109,10 @@ public class GameOverController : MonoBehaviour
     private void ReturnToStartMenu()
     {
         Time.timeScale = 1f;
+        GameModeManager.ClearSpaceReturnPosition();
+        GameModeManager.SetMode(GameMode.Space);
+        if (PlayerModeHandler.Instance != null)
+            Destroy(PlayerModeHandler.Instance.gameObject);
         SceneManager.LoadScene(startMenuSceneName);
     }
 

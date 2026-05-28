@@ -198,7 +198,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -32352,6 +32352,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6844592004546392527, guid: 2541921e943edbd428373fd17b8bf921, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32389,10 +32393,22 @@ PrefabInstance:
       propertyPath: m_EdgeRadius
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2092118849474500937, guid: e8bae36b607017047ace9061609051d9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6102680436086010154, guid: e8bae36b607017047ace9061609051d9, type: 3}
       propertyPath: saveMenuController
       value: 
       objectReference: {fileID: 1824785167}
+    - target: {fileID: 6149011280757300237, guid: e8bae36b607017047ace9061609051d9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6149042726069847807, guid: e8bae36b607017047ace9061609051d9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6305464844439045707, guid: e8bae36b607017047ace9061609051d9, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
@@ -32462,6 +32478,102 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8bae36b607017047ace9061609051d9, type: 3}
+--- !u!1001 &1698777961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1620806614154300411, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 295712898}
+    - target: {fileID: 1635478055021727303, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_Name
+      value: "BackgroundCieloMonta\xF1a"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893810135570415214, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687536591379489606, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 295712898}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -40.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354930854267969080, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018473086908060462, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 295712898}
+    - target: {fileID: 7656785744662618411, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057413677220262832, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 6567655881818409839, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+    - {fileID: 4312348648306856411, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+    - {fileID: 7738862737540777028, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab6a00afc147b7d4dbcb7981dcd27358, type: 3}
 --- !u!114 &1764674201 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4527130673599629268, guid: 23d33f312fd3c1849869913f88023cc0, type: 3}
@@ -32941,3 +33053,4 @@ SceneRoots:
   - {fileID: 1281915972}
   - {fileID: 701626695709837713}
   - {fileID: 8993073969023642992}
+  - {fileID: 1698777961}

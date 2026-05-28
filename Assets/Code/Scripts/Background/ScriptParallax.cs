@@ -1,4 +1,3 @@
-using System.Numerics;
 using UnityEngine;
 
 public class ScriptParallax : MonoBehaviour
@@ -17,7 +16,7 @@ public class ScriptParallax : MonoBehaviour
     }
 
     
-    void FixedUpdate()
+    void LateUpdate()
     {
         float distancia = camara.transform.position.x * efectoParallax;
         float movement = camara.transform.position.x * (1 - efectoParallax);

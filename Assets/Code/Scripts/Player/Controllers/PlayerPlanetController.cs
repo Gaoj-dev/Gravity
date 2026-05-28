@@ -13,9 +13,11 @@ public class PlayerPlanetController : MonoBehaviour
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float jumpHorizontalBoost = 8f;
     [SerializeField] private float gravityScale = 3f;
-    public bool IsJumping => !groundDetector.EstaSuelo;
+    [Min(0f)] public float jumpAnimDelay = 0.1f;
+    public bool IsJumping => notGroundedFor >= jumpAnimDelay;
 
     private GroundDetector groundDetector;
+    private float notGroundedFor;
     private float moveInput;
     private bool jumpRequested;
     private Vector2 facingDirection = Vector2.right;
@@ -101,6 +103,11 @@ public class PlayerPlanetController : MonoBehaviour
         {
             rb.gravityScale = ForcedGravityScale;
         }
+
+        if (groundDetector.EstaSuelo)
+            notGroundedFor = 0f;
+        else
+            notGroundedFor += Time.fixedDeltaTime;
 
         Vector2 velocity = rb.linearVelocity;
         if (movementLocked)
